@@ -6,9 +6,20 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #282c34;
+  color: white; 
+   font-family: "Josefin Sans", Helvetica, sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+body {
+  font-family: "Josefin Sans", Helvetica, sans-serif;
+}
+
+
+h1, h2, h3, h4, h5, button, a {
+  font-family: "Josefin Sans", Helvetica, sans-serif;
+}
+
+.dashboard-title {
+  text-align: center; 
 }
