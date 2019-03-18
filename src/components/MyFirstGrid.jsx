@@ -1,4 +1,5 @@
 
+import Card from '@material-ui/core/Card';
 import React from "react";
 import _ from "lodash";
 import { Responsive, WidthProvider } from "react-grid-layout";
@@ -6,6 +7,7 @@ const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
 const gridStyle = {
   padding: 20, 
+  margin: 30, 
   color: 'black', 
   backgroundColor: '#eee', 
   alignContent: 'center', 
@@ -34,7 +36,7 @@ class MyFirstGrid extends React.Component {
   generateDOM() {
     return _.map(this.state.layouts.lg, function(l, i) {
       return (
-        <div key={i} className={l.static ? "static" : ""}>
+           <div key={i} className={l.static ? "static" : ""} style={{backgroundColor: "yellow"}}>
           {l.static ? (
             <span
               className="text"
@@ -92,12 +94,15 @@ class MyFirstGrid extends React.Component {
         <button onClick={this.onCompactTypeChange}>
           Change Compaction Type
         </button>
+
         <ResponsiveReactGridLayout
           {...this.props}
           layouts={this.state.layouts}
           onBreakpointChange={this.onBreakpointChange}
           onLayoutChange={this.onLayoutChange}
           // WidthProvider option
+          isDraggable= {true}
+          isResizable= {true}
           measureBeforeMount={false}
           autoSize={true}
           // I like to have it animate on mount. If you don't, delete `useCSSTransforms` (it's default `true`)
