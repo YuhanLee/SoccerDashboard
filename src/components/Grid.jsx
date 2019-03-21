@@ -1,9 +1,12 @@
 
-import Card from '@material-ui/core/Card';
 import React from "react";
+import { Route, Switch } from 'react-router-dom';
+import Card from '@material-ui/core/Card';
 import _ from "lodash";
 import { Responsive, WidthProvider } from "react-grid-layout";
+import Container from "./Container"; 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
+
 
 const gridStyle = {
   padding: 20, 
@@ -13,7 +16,7 @@ const gridStyle = {
   alignContent: 'center', 
   textAlign: 'center', 
 }; 
-class MyFirstGrid extends React.Component {
+class Grid extends React.Component {
   static defaultProps = {
     className: "layout",
     rowHeight: 30,
@@ -36,17 +39,8 @@ class MyFirstGrid extends React.Component {
   generateDOM() {
     return _.map(this.state.layouts.lg, function(l, i) {
       return (
-           <div key={i} className={l.static ? "static" : ""} style={{backgroundColor: "yellow"}}>
-          {l.static ? (
-            <span
-              className="text"
-              title="This item is static and cannot be removed or resized."
-            >
-              Static - {i}
-            </span>
-          ) : (
-            <span className="text">{i}</span>
-          )}
+        <div key={i} style={{backgroundColor: "yellow"}}>
+          <Route exact path='/' render={(props) => <Container {...props}>{i}</Container>} />
         </div>
       );
     });
@@ -98,9 +92,11 @@ class MyFirstGrid extends React.Component {
         <ResponsiveReactGridLayout
           {...this.props}
           layouts={this.state.layouts}
+          breakpoints={{lg: 2000, md: 996, sm: 768, xs: 480, xxs: 0}}
           onBreakpointChange={this.onBreakpointChange}
           onLayoutChange={this.onLayoutChange}
           // WidthProvider option
+          measureBeforeMount={true}
           isDraggable= {true}
           isResizable= {true}
           measureBeforeMount={false}
@@ -134,4 +130,4 @@ function generateLayout() {
 }
 
 
-export default MyFirstGrid; 
+export default Grid; 
