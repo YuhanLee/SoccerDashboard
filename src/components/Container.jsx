@@ -3,20 +3,13 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from'@material-ui/core/Grid'; 
 import React from "react";
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-
-const wewStyle = {
-  color: 'white', 
-  alignContent: 'center', 
-  textAlign: 'center', 
-  
-}; 
 
 const styles = {
+  gridStyle: { 
+    color: 'white', 
+    alignContent: 'center', 
+    textAlign: 'center', 
+  }, 
   card: {
     minWidth: 275,
   },
@@ -33,8 +26,6 @@ const styles = {
   },
 };
 
-
-
 class Container extends React.Component {
   constructor(props) {
     super(props);
@@ -48,7 +39,7 @@ class Container extends React.Component {
     const bull = <span className={classes.bullet}>•</span>;
   
     return (
-      <div className={wewStyle}>
+      <div className={classes.gridStyle}>
         <Grid
           container
           direction="row"

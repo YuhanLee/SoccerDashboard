@@ -1,34 +1,62 @@
 
 import React from "react";
 import { Route, Switch } from 'react-router-dom';
-import Grid from'@material-ui/core/Grid'; 
 import _ from "lodash";
 import { withStyles } from '@material-ui/core/styles';
 import { Responsive, WidthProvider } from "react-grid-layout";
 import Container from "./Container"; 
 import FormControl from '@material-ui/core/FormControl';
-import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPencilAlt, faQuestion, faSync } from '@fortawesome/free-solid-svg-icons'
+import buttonExample from '../images/buttonExample.png'
+
+library.add(faPencilAlt, faQuestion, faSync)
+
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
 const styles = theme => ({
+  todo: {
+    backgroundColor: 'pink', 
+    color: 'black', 
+    padding: 10, 
+  },
+
   root: {
     display: 'flex',
     flexWrap: 'wrap',
   },
+
+  actionBarStyle: {
+    display: 'flex', 
+    padding: 20, 
+    backgroundColor: 'white', 
+    justifyContent: 'space-between', 
+    color: 'black', 
+  }, 
+
+  selectionInputs: {
+
+  },
+
+  actionButtons: {
+    marginLeft: 10, 
+    marginRight: 10, 
+  },
+
+  icons: {
+    padding: 10,
+  }, 
+
   formControl: {
     margin: theme.spacing.unit,
     display: 'flex', 
     flexWrap: 'wrap', 
     flexDirection: 'row'
   },
-
-  actionBarStyle: {
-    backgroundColor: 'white', 
-    color: 'black', 
-  }, 
 
   gridStyle: {
     padding: 20, 
@@ -111,55 +139,68 @@ class Dashboard extends React.Component {
         <button onClick={this.onCompactTypeChange}>
           Change Compaction Type
         </button> */}
+      
+      <div className={classes.todo}>
+       {/* this has to be removed later */}
+        <h5 style={{color: 'red'}}> Please Fix: Issue: Material UI "input label" overlapping</h5>
+        <h5 style={{color: 'red'}}> TODO:Make buttons clickable + with rounded circle like: <img src={buttonExample} /></h5>
+      </div>
+
 
       <div className={classes.actionBarStyle}>
-        <form className={classes.root} autoComplete="off">
-        <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="stage-simple" >Select A Stage</InputLabel>
-          <Select
-            value={this.state.age}
-            onChange={this.handleChange}
-            inputProps={{
-              name: "stage",
-              id: "stage-simple"
-            }}
-          >
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
-          </Select>
-         
-          <InputLabel htmlFor="stage-simple" >Select Stage Details</InputLabel>
-          <Select
-            value={this.state.age}
-            onChange={this.handleChange}
-            inputProps={{
-              name: "details",
-              id: "details-simple"
-            }}
-          >
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
-          </Select>
+        <div className={classes.selectionInputs}>
+          <form className={classes.root} autoComplete="off">
+            <FormControl className={classes.formControl}>
+              <InputLabel htmlFor="stage-simple" >Select A Stage</InputLabel>
+              <Select
+                value={this.state.age}
+                onChange={this.handleChange}
+                inputProps={{
+                  name: "stage",
+                  id: "stage-simple"
+                }}
+              >
+                <MenuItem value={10}>Ten</MenuItem>
+                <MenuItem value={20}>Twenty</MenuItem>
+                <MenuItem value={30}>Thirty</MenuItem>
+              </Select>
+            
+              <InputLabel htmlFor="stage-simple" >Select Stage Details</InputLabel>
+              <Select
+                value={this.state.age}
+                onChange={this.handleChange}
+                inputProps={{
+                  name: "details",
+                  id: "details-simple"
+                }}
+              >
+                <MenuItem value={10}>Ten</MenuItem>
+                <MenuItem value={20}>Twenty</MenuItem>
+                <MenuItem value={30}>Thirty</MenuItem>
+              </Select>
 
-          <InputLabel htmlFor="stage-simple" >Select A Game</InputLabel>
-          <Select
-            value={this.state.age}
-            onChange={this.handleChange}
-            inputProps={{
-              name: "game",
-              id: "game-simple"
-            }}
-          >
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
-          </Select>
-        </FormControl>    
+              <InputLabel htmlFor="stage-simple" >Select A Game</InputLabel>
+              <Select
+                value={this.state.age}
+                onChange={this.handleChange}
+                inputProps={{
+                  name: "game",
+                  id: "game-simple"
+                }}
+              >
+                <MenuItem value={10}>Ten</MenuItem>
+                <MenuItem value={20}>Twenty</MenuItem>
+                <MenuItem value={30}>Thirty</MenuItem>
+              </Select>
+            </FormControl>    
+          </form> 
+        </div>    
 
-        <h5 style={{color: 'red'}}> Please Fix: Issue: Material UI "input label" overlapping</h5>
-        </form>     
+        <div className={classes.actionButtons}>
+          <FontAwesomeIcon className={classes.icons} spin border size="lg" icon="sync" />
+          <FontAwesomeIcon className={classes.icons} spin border size="lg" icon="pencil-alt" />
+          <FontAwesomeIcon className={classes.icons} spin border size="lg" icon="question" />
+        </div>
       </div>
         
 
