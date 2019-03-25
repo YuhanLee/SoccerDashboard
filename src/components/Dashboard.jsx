@@ -1,22 +1,45 @@
 
 import React from "react";
 import { Route, Switch } from 'react-router-dom';
-import Card from '@material-ui/core/Card';
+import Grid from'@material-ui/core/Grid'; 
 import _ from "lodash";
+import { withStyles } from '@material-ui/core/styles';
 import { Responsive, WidthProvider } from "react-grid-layout";
 import Container from "./Container"; 
+import FormControl from '@material-ui/core/FormControl';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
+const styles = theme => ({
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  formControl: {
+    margin: theme.spacing.unit,
+    display: 'flex', 
+    flexWrap: 'wrap', 
+    flexDirection: 'row'
+  },
 
-const gridStyle = {
-  padding: 20, 
-  margin: 30, 
-  color: 'black', 
-  backgroundColor: '#eee', 
-  alignContent: 'center', 
-  textAlign: 'center', 
-}; 
-class Grid extends React.Component {
+  actionBarStyle: {
+    backgroundColor: 'white', 
+    color: 'black', 
+  }, 
+
+  gridStyle: {
+    padding: 20, 
+    margin: 30, 
+    color: 'black', 
+    backgroundColor: '#eee', 
+    alignContent: 'center', 
+    textAlign: 'center'
+  }, 
+});
+class Dashboard extends React.Component {
   static defaultProps = {
     className: "layout",
     rowHeight: 30,
@@ -45,7 +68,6 @@ class Grid extends React.Component {
       );
     });
   }
-
   onBreakpointChange = breakpoint => {
     this.setState({
       currentBreakpoint: breakpoint
@@ -72,9 +94,10 @@ class Grid extends React.Component {
   };
 
   render() {
+    const { classes } = this.props;
     return (
-      <div style={gridStyle}>
-        <div >
+      <div className={classes.gridStyle}>
+        {/* <div>
           Current Breakpoint: {this.state.currentBreakpoint} ({
             this.props.cols[this.state.currentBreakpoint]
           }{" "}
@@ -87,7 +110,58 @@ class Grid extends React.Component {
         <button onClick={this.onNewLayout}>Generate New Layout</button>
         <button onClick={this.onCompactTypeChange}>
           Change Compaction Type
-        </button>
+        </button> */}
+
+      <div className={classes.actionBarStyle}>
+        <form className={classes.root} autoComplete="off">
+        <FormControl className={classes.formControl}>
+          <InputLabel htmlFor="stage-simple" >Select A Stage</InputLabel>
+          <Select
+            value={this.state.age}
+            onChange={this.handleChange}
+            inputProps={{
+              name: "stage",
+              id: "stage-simple"
+            }}
+          >
+            <MenuItem value={10}>Ten</MenuItem>
+            <MenuItem value={20}>Twenty</MenuItem>
+            <MenuItem value={30}>Thirty</MenuItem>
+          </Select>
+         
+          <InputLabel htmlFor="stage-simple" >Select Stage Details</InputLabel>
+          <Select
+            value={this.state.age}
+            onChange={this.handleChange}
+            inputProps={{
+              name: "details",
+              id: "details-simple"
+            }}
+          >
+            <MenuItem value={10}>Ten</MenuItem>
+            <MenuItem value={20}>Twenty</MenuItem>
+            <MenuItem value={30}>Thirty</MenuItem>
+          </Select>
+
+          <InputLabel htmlFor="stage-simple" >Select A Game</InputLabel>
+          <Select
+            value={this.state.age}
+            onChange={this.handleChange}
+            inputProps={{
+              name: "game",
+              id: "game-simple"
+            }}
+          >
+            <MenuItem value={10}>Ten</MenuItem>
+            <MenuItem value={20}>Twenty</MenuItem>
+            <MenuItem value={30}>Thirty</MenuItem>
+          </Select>
+        </FormControl>    
+
+        <h5 style={{color: 'red'}}> Please Fix: Issue: Material UI "input label" overlapping</h5>
+        </form>     
+      </div>
+        
 
         <ResponsiveReactGridLayout
           {...this.props}
@@ -129,5 +203,4 @@ function generateLayout() {
   });
 }
 
-
-export default Grid; 
+export default withStyles(styles)(Dashboard)
