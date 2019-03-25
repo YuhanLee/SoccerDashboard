@@ -6,7 +6,7 @@ import React from "react";
 
 const styles = {
   gridStyle: { 
-    color: 'white', 
+    color: 'black', 
     alignContent: 'center', 
     textAlign: 'center', 
   }, 
@@ -35,7 +35,10 @@ class Container extends React.Component {
           container
           direction="row"
           justify="center"
-          alignItems="center"/>
+          alignItems="center">
+          
+          <h1>ddd</h1>
+          </Grid>
       </div>
     );
   }
