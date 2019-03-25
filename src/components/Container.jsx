@@ -13,11 +13,7 @@ const styles = {
   card: {
     minWidth: 275,
   },
-  bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)',
-  },
+
   title: {
     fontSize: 14,
   },
@@ -27,17 +23,12 @@ const styles = {
 };
 
 class Container extends React.Component {
-  constructor(props) {
-    super(props);
-}
   componentDidMount() {
     console.log("container mounted"); 
   }
 
   render() {
-    const { classes } = this.props;
-    const bull = <span className={classes.bullet}>•</span>;
-  
+    const { classes } = this.props;  
     return (
       <div className={classes.gridStyle}>
         <Grid

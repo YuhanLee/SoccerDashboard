@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Route, Switch } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import _ from "lodash";
 import { withStyles } from '@material-ui/core/styles';
 import { Responsive, WidthProvider } from "react-grid-layout";
@@ -11,12 +11,21 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPencilAlt, faQuestion, faSync } from '@fortawesome/free-solid-svg-icons'
+import IconButton from '@material-ui/core/IconButton';
+import { faPencilAlt, faQuestionCircle, faSync, faSave } from '@fortawesome/free-solid-svg-icons'
 import buttonExample from '../images/buttonExample.png'
 
-library.add(faPencilAlt, faQuestion, faSync)
+library.add(faPencilAlt, faQuestionCircle, faSync, faSave)
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
+
+const EditSaveIcon = ({ editMode, onClick }) => {
+  return (
+    <div onClick={onClick} >
+      <FontAwesomeIcon icon={editMode ? 'save' : 'pencil-alt'}/>
+    </div>
+  );
+};
 
 const styles = theme => ({
   todo: {
@@ -25,6 +34,9 @@ const styles = theme => ({
     padding: 10, 
   },
 
+  button: {
+    margin: (theme.spacing.unit)/2,
+  },
   root: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -48,7 +60,7 @@ const styles = theme => ({
   },
 
   icons: {
-    padding: 10,
+    padding: 3,
   }, 
 
   formControl: {
@@ -73,14 +85,15 @@ class Dashboard extends React.Component {
     rowHeight: 30,
     onLayoutChange: function() {},
     cols: { lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 },
-    initialLayout: generateLayout()
+    initialLayout: generateLayout(), 
   };
 
   state = {
     currentBreakpoint: "sm",
     compactType: "vertical",
     mounted: false,
-    layouts: { lg: this.props.initialLayout }
+    layouts: { lg: this.props.initialLayout }, 
+    editMode: false, 
   };
 
   componentDidMount() {
@@ -121,6 +134,9 @@ class Dashboard extends React.Component {
     });
   };
 
+  onEditDashboard = () => {
+    this.setState({editMode : !this.state.editMode})
+  }; 
   render() {
     const { classes } = this.props;
     return (
@@ -143,7 +159,7 @@ class Dashboard extends React.Component {
       <div className={classes.todo}>
        {/* this has to be removed later */}
         <h5 style={{color: 'red'}}> Please Fix: Issue: Material UI "input label" overlapping</h5>
-        <h5 style={{color: 'red'}}> TODO:Make buttons clickable + with rounded circle like: <img src={buttonExample} /></h5>
+        <h5 style={{color: 'red'}}> TODO: buttons should have rounded black border like: <img src={buttonExample} alt="wew" /></h5>
       </div>
 
 
@@ -153,7 +169,7 @@ class Dashboard extends React.Component {
             <FormControl className={classes.formControl}>
               <InputLabel htmlFor="stage-simple" >Select A Stage</InputLabel>
               <Select
-                value={this.state.age}
+                value="tmp"
                 onChange={this.handleChange}
                 inputProps={{
                   name: "stage",
@@ -167,7 +183,7 @@ class Dashboard extends React.Component {
             
               <InputLabel htmlFor="stage-simple" >Select Stage Details</InputLabel>
               <Select
-                value={this.state.age}
+                value="tmp"
                 onChange={this.handleChange}
                 inputProps={{
                   name: "details",
@@ -181,7 +197,7 @@ class Dashboard extends React.Component {
 
               <InputLabel htmlFor="stage-simple" >Select A Game</InputLabel>
               <Select
-                value={this.state.age}
+                value="tmp"
                 onChange={this.handleChange}
                 inputProps={{
                   name: "game",
@@ -197,12 +213,23 @@ class Dashboard extends React.Component {
         </div>    
 
         <div className={classes.actionButtons}>
-          <FontAwesomeIcon className={classes.icons} spin border size="lg" icon="sync" />
-          <FontAwesomeIcon className={classes.icons} spin border size="lg" icon="pencil-alt" />
-          <FontAwesomeIcon className={classes.icons} spin border size="lg" icon="question" />
+
+
+        <IconButton className={classes.button} aria-label="Sync">
+          <FontAwesomeIcon className={classes.icons} size="sm" icon="sync" />
+        </IconButton>
+
+
+        <IconButton className={classes.button} onClick={this.onEditDashboard}  aria-label="Edit">
+          <EditSaveIcon editMode={this.state.editMode} onClick={this.onEditDashboard} />
+        </IconButton>
+
+        <IconButton className={classes.button} aria-label="Help">
+          <FontAwesomeIcon className={classes.icons} size="sm" icon="question-circle" />
+        </IconButton>
         </div>
       </div>
-        
+         
 
         <ResponsiveReactGridLayout
           {...this.props}
@@ -212,9 +239,8 @@ class Dashboard extends React.Component {
           onLayoutChange={this.onLayoutChange}
           // WidthProvider option
           measureBeforeMount={true}
-          isDraggable= {true}
-          isResizable= {true}
-          measureBeforeMount={false}
+          isDraggable= {this.state.editMode}
+          isResizable= {this.state.editMode}
           autoSize={true}
           // I like to have it animate on mount. If you don't, delete `useCSSTransforms` (it's default `true`)
           // and set `measureBeforeMount={true}`.
