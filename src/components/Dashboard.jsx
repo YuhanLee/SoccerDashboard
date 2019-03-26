@@ -49,8 +49,9 @@ const styles = theme => ({
     color: 'black', 
   }, 
 
-  selectionInputs: {
-
+  selectBox: {
+    minWidth: 200, 
+    // display: 'inline-block',
   },
 
   actionButtons: {
@@ -66,7 +67,9 @@ const styles = theme => ({
     margin: theme.spacing.unit,
     display: 'flex', 
     flexWrap: 'wrap', 
-    flexDirection: 'row'
+    flexDirection: 'row',
+    display: 'inline-block', 
+    minWidth: 200, 
   },
 
   gridStyle: {
@@ -84,7 +87,7 @@ class Dashboard extends React.Component {
   static defaultProps = {
     className: "layout",
     rowHeight: 30,
-    onLayoutChange: function() {},
+    // onLayoutChange: function() {},
     cols: { lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 },
     initialLayout: generateLayout(), 
   };
@@ -125,15 +128,15 @@ class Dashboard extends React.Component {
     this.setState({ compactType });
   };
 
-  onLayoutChange = (layout, layouts) => {
-    this.props.onLayoutChange(layout, layouts);
-  };
+  // onLayoutChange = (layout, layouts) => {
+  //   this.props.onLayoutChange(layout, layouts);
+  // };
 
-  onNewLayout = () => {
-    this.setState({
-      layouts: { lg: generateLayout() }
-    });
-  };
+  // onNewLayout = () => {
+  //   this.setState({
+  //     layouts: { lg: generateLayout() }
+  //   });
+  // };
 
   onEditDashboard = () => {
     this.setState({editMode : !this.state.editMode})
@@ -157,18 +160,19 @@ class Dashboard extends React.Component {
           Change Compaction Type
         </button> */}
       
-      <div className={classes.todo}>
+      {/* <div className={classes.todo}> */}
        {/* this has to be removed later */}
-        <h5 style={{color: 'red'}}> Please Fix: Issue: Material UI "input label" overlapping</h5>
+        {/* <h5 style={{color: 'red'}}> Please Fix: Issue: Material UI "input label" overlapping</h5>
         <h5 style={{color: 'red'}}> TODO: buttons should have rounded black border like: <img src={buttonExample} alt="wew" /></h5>
-      </div>
+      </div> */}
 
       <div className={classes.actionBarStyle}>
         <div className={classes.selectionInputs}>
           <form className={classes.root} autoComplete="off">
             <FormControl className={classes.formControl}>
-              <InputLabel htmlFor="stage-simple" >Select A Stage</InputLabel>
+              <InputLabel  htmlFor="stage-simple" >Select A Stage</InputLabel>
               <Select
+                className={classes.selectBox}
                 value="tmp"
                 onChange={this.handleChange}
                 inputProps={{
@@ -185,6 +189,7 @@ class Dashboard extends React.Component {
             <FormControl className={classes.formControl}>
               <InputLabel htmlFor="stage-simple" >Select Stage Details</InputLabel>
               <Select
+                className={classes.selectBox}
                 value="tmp"
                 onChange={this.handleChange}
                 inputProps={{
@@ -199,8 +204,9 @@ class Dashboard extends React.Component {
             </FormControl>
 
             <FormControl className={classes.formControl}>
-              <InputLabel htmlFor="stage-simple" >Select A Game</InputLabel>
+              <InputLabel className={classes.inputLabel} htmlFor="stage-simple" >Select A Game</InputLabel>
               <Select
+                className={classes.selectBox}
                 value="tmp"
                 onChange={this.handleChange}
                 inputProps={{
@@ -239,7 +245,7 @@ class Dashboard extends React.Component {
           layouts={this.state.layouts}
           breakpoints={{lg: 2000, md: 996, sm: 768, xs: 480, xxs: 0}}
           onBreakpointChange={this.onBreakpointChange}
-          onLayoutChange={this.onLayoutChange}
+          // onLayoutChange={this.onLayoutChange}
           // WidthProvider option
           measureBeforeMount={true}
           isDraggable= {this.state.editMode}
@@ -260,7 +266,14 @@ class Dashboard extends React.Component {
 
 
 function generateLayout() {
-  return _.map(_.range(0, 7), function(item, i) {
+  var timelineContainer = {x: 10, y: 0, w: 2, h: 5, i: "0"};
+  var scoreContainer = {x: 6, y: 0, w: 2, h: 5, i: "1"};
+  var gameStatsContainer = {x: 6, y: 0, w: 2, h: 2, i: "2"};
+  var substitutions = {x: 10, y: 0, w: 2, h: 4, i: "3"};
+  var lineUpContainer = {x: 4, y: 0, w: 2, h: 5, i: "4"};
+
+  var containers = { timelineContainer, scoreContainer, gameStatsContainer, substitutions, lineUpContainer}; 
+  var k =  _.map(_.range(0, 5), function(item, i) {
     var y = Math.ceil(Math.random() * 4) + 1;
     return {
       x: (_.random(0, 5) * 2) % 12,
@@ -268,9 +281,12 @@ function generateLayout() {
       w: 2,
       h: y,
       i: i.toString(),
-      // static: Math.random() < 0.05
     };
   });
+  // return containers; 
+  console.log("original stuff" , k); 
+  console.log("container = ", containers); 
+  return k; 
 }
 
 export default withStyles(styles)(Dashboard)
