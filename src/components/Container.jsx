@@ -7,6 +7,7 @@ import React from "react";
 const styles = {
   gridStyle: { 
     color: 'black', 
+    paddingTop: 0, 
     alignContent: 'center', 
     textAlign: 'center', 
   }, 
@@ -23,6 +24,10 @@ const styles = {
 };
 
 class Container extends React.Component {
+  state = {
+    title: this.props.title
+  };
+
   componentDidMount() {
     console.log("container mounted"); 
   }
@@ -37,7 +42,8 @@ class Container extends React.Component {
           justify="center"
           alignItems="center">
           
-          <h1>ddd</h1>
+          <h3>{this.props.title}</h3>
+          
           </Grid>
       </div>
     );

@@ -12,7 +12,6 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import IconButton from '@material-ui/core/IconButton';
 import { faPencilAlt, faQuestionCircle, faSync, faSave } from '@fortawesome/free-solid-svg-icons'
-import buttonExample from '../images/buttonExample.png'
 
 library.add(faPencilAlt, faQuestionCircle, faSync, faSave)
 
@@ -27,12 +26,6 @@ const EditSaveIcon = ({ editMode, onClick }) => {
 };
 
 const styles = theme => ({
-  todo: {
-    backgroundColor: 'pink', 
-    color: 'black', 
-    padding: 10, 
-  },
-
   button: {
     margin: (theme.spacing.unit)/2,
   },
@@ -89,9 +82,8 @@ class Dashboard extends React.Component {
     rowHeight: 30,
     // onLayoutChange: function() {},
     cols: { lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 },
-    initialLayout: generateLayout(), 
+    initialLayout: generateDefaultLayout(), 
   };
-
   state = {
     currentBreakpoint: "sm",
     compactType: "vertical",
@@ -106,9 +98,10 @@ class Dashboard extends React.Component {
 
   generateDOM() {
     return _.map(this.state.layouts.lg, function(l, i) {
+      console.log("l.title = ", l.title); 
       return (
         <div key={i} style={{backgroundColor: "yellow"}}>
-          <Route exact path='/' render={(props) => <Container {...props}>{i}</Container>} />
+          <Route exact path='/' render={(props) => <Container title={l.title}{...props}>{i}</Container>} />
         </div>
       );
     });
@@ -117,15 +110,6 @@ class Dashboard extends React.Component {
     this.setState({
       currentBreakpoint: breakpoint
     });
-  };
-
-  onCompactTypeChange = () => {
-    const { compactType: oldCompactType } = this.state;
-    const compactType =
-      oldCompactType === "horizontal"
-        ? "vertical"
-        : oldCompactType === "vertical" ? null : "horizontal";
-    this.setState({ compactType });
   };
 
   onEditDashboard = () => {
@@ -230,14 +214,14 @@ class Dashboard extends React.Component {
 }
 
 
-function generateLayout() {
-  var timelineContainer = {x: 7, y: 0, w: 3, h: 19, i: "0"};
-  var scoreContainer = {x: 3, y: 0, w: 4, h: 4, i: "1"};
-  var gameStatsContainer = {x: 3, y: 4, w: 4, h: 9, i: "2"};
-  var substitutions = {x: 3, y: 13, w: 4, h: 6, i: "3"};
-  var lineUpContainer = {x: 0, y: 0, w: 3, h: 19, i: "4"};
+function generateDefaultLayout() {
+  var scoreContainer = {x: 7, y: 0, w: 3, h: 19, i: "0", title: "Score Stats"};
+  var substitutions = {x: 3, y: 0, w: 4, h: 4, i: "1", title: "Substitutions"};
+  var lineUpContainer = {x: 3, y: 4, w: 4, h: 9, i: "2", title: "Lineup"};
+  var gameStatsContainer = {x: 3, y: 13, w: 4, h: 6, i: "3", title: "Game Stats"};
+  var timelineContainer = {x: 0, y: 0, w: 3, h: 19, i: "4", title: "Timeline"};
 
-  var originalContainerConfig = [ scoreContainer, timelineContainer, gameStatsContainer, substitutions, lineUpContainer]; 
+  var originalContainerConfig = [ scoreContainer, substitutions, lineUpContainer, gameStatsContainer, timelineContainer]; 
   return originalContainerConfig; 
 }
 
