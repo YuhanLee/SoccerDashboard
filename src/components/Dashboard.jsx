@@ -128,16 +128,6 @@ class Dashboard extends React.Component {
     this.setState({ compactType });
   };
 
-  // onLayoutChange = (layout, layouts) => {
-  //   this.props.onLayoutChange(layout, layouts);
-  // };
-
-  // onNewLayout = () => {
-  //   this.setState({
-  //     layouts: { lg: generateLayout() }
-  //   });
-  // };
-
   onEditDashboard = () => {
     this.setState({editMode : !this.state.editMode})
   }; 
@@ -145,85 +135,62 @@ class Dashboard extends React.Component {
     const { classes } = this.props;
     return (
       <div className={classes.gridStyle}>
-        {/* <div>
-          Current Breakpoint: {this.state.currentBreakpoint} ({
-            this.props.cols[this.state.currentBreakpoint]
-          }{" "}
-          columns)
-        </div>
-        <div>
-          Compaction type:{" "}
-          {_.capitalize(this.state.compactType) || "No Compaction"}
-        </div>
-        <button onClick={this.onNewLayout}>Generate New Layout</button>
-        <button onClick={this.onCompactTypeChange}>
-          Change Compaction Type
-        </button> */}
-      
-      {/* <div className={classes.todo}> */}
-       {/* this has to be removed later */}
-        {/* <h5 style={{color: 'red'}}> Please Fix: Issue: Material UI "input label" overlapping</h5>
-        <h5 style={{color: 'red'}}> TODO: buttons should have rounded black border like: <img src={buttonExample} alt="wew" /></h5>
-      </div> */}
+        <div className={classes.actionBarStyle}>
+          <div className={classes.selectionInputs}>
+            <form className={classes.root} autoComplete="off">
+              <FormControl className={classes.formControl}>
+                <InputLabel  htmlFor="stage-simple" >Select A Stage</InputLabel>
+                <Select
+                  className={classes.selectBox}
+                  value="tmp"
+                  onChange={this.handleChange}
+                  inputProps={{
+                    name: "stage",
+                    id: "stage-simple"
+                  }}
+                >
+                  <MenuItem value={10}>Ten</MenuItem>
+                  <MenuItem value={20}>Twenty</MenuItem>
+                  <MenuItem value={30}>Thirty</MenuItem>
+                </Select>
+              </FormControl>
 
-      <div className={classes.actionBarStyle}>
-        <div className={classes.selectionInputs}>
-          <form className={classes.root} autoComplete="off">
-            <FormControl className={classes.formControl}>
-              <InputLabel  htmlFor="stage-simple" >Select A Stage</InputLabel>
-              <Select
-                className={classes.selectBox}
-                value="tmp"
-                onChange={this.handleChange}
-                inputProps={{
-                  name: "stage",
-                  id: "stage-simple"
-                }}
-              >
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
-              </Select>
-            </FormControl>
+              <FormControl className={classes.formControl}>
+                <InputLabel htmlFor="stage-simple" >Select Stage Details</InputLabel>
+                <Select
+                  className={classes.selectBox}
+                  value="tmp"
+                  onChange={this.handleChange}
+                  inputProps={{
+                    name: "details",
+                    id: "details-simple"
+                  }}
+                >
+                  <MenuItem value={10}>Ten</MenuItem>
+                  <MenuItem value={20}>Twenty</MenuItem>
+                  <MenuItem value={30}>Thirty</MenuItem>
+                </Select>
+              </FormControl>
 
-            <FormControl className={classes.formControl}>
-              <InputLabel htmlFor="stage-simple" >Select Stage Details</InputLabel>
-              <Select
-                className={classes.selectBox}
-                value="tmp"
-                onChange={this.handleChange}
-                inputProps={{
-                  name: "details",
-                  id: "details-simple"
-                }}
-              >
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
-              </Select>
-            </FormControl>
-
-            <FormControl className={classes.formControl}>
-              <InputLabel className={classes.inputLabel} htmlFor="stage-simple" >Select A Game</InputLabel>
-              <Select
-                className={classes.selectBox}
-                value="tmp"
-                onChange={this.handleChange}
-                inputProps={{
-                  name: "game",
-                  id: "game-simple"
-                }}
-              >
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
-              </Select>
-            </FormControl>    
-          </form> 
-        </div>    
-
+              <FormControl className={classes.formControl}>
+                <InputLabel className={classes.inputLabel} htmlFor="stage-simple" >Select A Game</InputLabel>
+                <Select
+                  className={classes.selectBox}
+                  value="tmp"
+                  onChange={this.handleChange}
+                  inputProps={{
+                    name: "game",
+                    id: "game-simple"
+                  }}
+                >
+                  <MenuItem value={10}>Ten</MenuItem>
+                  <MenuItem value={20}>Twenty</MenuItem>
+                  <MenuItem value={30}>Thirty</MenuItem>
+                </Select>
+              </FormControl>    
+            </form> 
+          </div>    
         <div className={classes.actionButtons}>
-
 
         <IconButton className={classes.button} aria-label="Sync">
           <FontAwesomeIcon className={classes.icons} size="sm" icon="sync" />
@@ -238,27 +205,25 @@ class Dashboard extends React.Component {
         </IconButton>
         </div>
       </div>
-         
-
-        <ResponsiveReactGridLayout
-          {...this.props}
-          layouts={this.state.layouts}
-          breakpoints={{lg: 2000, md: 996, sm: 768, xs: 480, xxs: 0}}
-          onBreakpointChange={this.onBreakpointChange}
-          // onLayoutChange={this.onLayoutChange}
-          // WidthProvider option
-          measureBeforeMount={true}
-          isDraggable= {this.state.editMode}
-          isResizable= {this.state.editMode}
-          autoSize={true}
-          // I like to have it animate on mount. If you don't, delete `useCSSTransforms` (it's default `true`)
-          // and set `measureBeforeMount={true}`.
-          useCSSTransforms={this.state.mounted}
-          compactType={this.state.compactType}
-          preventCollision={!this.state.compactType}
-        >
-          {this.generateDOM()}
-        </ResponsiveReactGridLayout>
+    
+      <ResponsiveReactGridLayout
+        {...this.props}
+        layouts={this.state.layouts}
+        breakpoints={{lg: 2000, md: 996, sm: 768, xs: 480, xxs: 0}}
+        onBreakpointChange={this.onBreakpointChange}
+        // WidthProvider option
+        measureBeforeMount={true}
+        isDraggable= {this.state.editMode}
+        isResizable= {this.state.editMode}
+        autoSize={true}
+        // I like to have it animate on mount. If you don't, delete `useCSSTransforms` (it's default `true`)
+        // and set `measureBeforeMount={true}`.
+        useCSSTransforms={this.state.mounted}
+        compactType={this.state.compactType}
+        preventCollision={!this.state.compactType}
+      >
+        {this.generateDOM()}
+      </ResponsiveReactGridLayout>
       </div>
     );
   }
@@ -266,27 +231,14 @@ class Dashboard extends React.Component {
 
 
 function generateLayout() {
-  var timelineContainer = {x: 10, y: 0, w: 2, h: 5, i: "0"};
-  var scoreContainer = {x: 6, y: 0, w: 2, h: 5, i: "1"};
-  var gameStatsContainer = {x: 6, y: 0, w: 2, h: 2, i: "2"};
-  var substitutions = {x: 10, y: 0, w: 2, h: 4, i: "3"};
-  var lineUpContainer = {x: 4, y: 0, w: 2, h: 5, i: "4"};
+  var timelineContainer = {x: 7, y: 0, w: 3, h: 19, i: "0"};
+  var scoreContainer = {x: 3, y: 0, w: 4, h: 4, i: "1"};
+  var gameStatsContainer = {x: 3, y: 4, w: 4, h: 9, i: "2"};
+  var substitutions = {x: 3, y: 13, w: 4, h: 6, i: "3"};
+  var lineUpContainer = {x: 0, y: 0, w: 3, h: 19, i: "4"};
 
-  var containers = { timelineContainer, scoreContainer, gameStatsContainer, substitutions, lineUpContainer}; 
-  var k =  _.map(_.range(0, 5), function(item, i) {
-    var y = Math.ceil(Math.random() * 4) + 1;
-    return {
-      x: (_.random(0, 5) * 2) % 12,
-      y: Math.floor(i / 6) * y,
-      w: 2,
-      h: y,
-      i: i.toString(),
-    };
-  });
-  // return containers; 
-  console.log("original stuff" , k); 
-  console.log("container = ", containers); 
-  return k; 
+  var originalContainerConfig = [ scoreContainer, timelineContainer, gameStatsContainer, substitutions, lineUpContainer]; 
+  return originalContainerConfig; 
 }
 
 export default withStyles(styles)(Dashboard)
