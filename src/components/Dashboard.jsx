@@ -61,7 +61,6 @@ const styles = theme => ({
     display: 'flex', 
     flexWrap: 'wrap', 
     flexDirection: 'row',
-    display: 'inline-block', 
     minWidth: 200, 
   },
 
@@ -98,7 +97,6 @@ class Dashboard extends React.Component {
 
   generateDOM() {
     return _.map(this.state.layouts.lg, function(l, i) {
-      console.log("l.title = ", l.title); 
       return (
         <div key={i} style={{backgroundColor: "yellow"}}>
           <Route exact path='/' render={(props) => <Container title={l.title}{...props}>{i}</Container>} />
@@ -206,8 +204,27 @@ class Dashboard extends React.Component {
         compactType={this.state.compactType}
         preventCollision={!this.state.compactType}
       >
-        {this.generateDOM()}
+      {/* <div>
+        <div style={{backgroundColor: "yellow"}}>
+          <Route exact path='/' render={(props) => <Container {...props}>wwwww</Container>} />
+        </div>
+        <div style={{backgroundColor: "yellow"}}>
+          <Route exact path='/' render={(props) => <Container {...props}>wwwww</Container>} />
+        </div>
+        <div style={{backgroundColor: "yellow"}}>
+          <Route exact path='/' render={(props) => <Container {...props}>wwwww</Container>} />
+        </div>
+        <div style={{backgroundColor: "yellow"}}>
+          <Route exact path='/' render={(props) => <Container {...props}>wwwww</Container>} />
+        </div>
+        <div style={{backgroundColor: "yellow"}}>
+          <Route exact path='/' render={(props) => <Container {...props}>wwwww</Container>} />
+        </div>
+      </div> */}
+
+      {this.generateDOM()}
       </ResponsiveReactGridLayout>
+
       </div>
     );
   }
