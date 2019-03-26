@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Route } from 'react-router-dom';
 import _ from "lodash";
@@ -79,6 +78,8 @@ const styles = theme => ({
     textAlign: 'center'
   }, 
 });
+
+
 class Dashboard extends React.Component {
   static defaultProps = {
     className: "layout",
@@ -180,7 +181,9 @@ class Dashboard extends React.Component {
                 <MenuItem value={20}>Twenty</MenuItem>
                 <MenuItem value={30}>Thirty</MenuItem>
               </Select>
-            
+            </FormControl>
+
+            <FormControl className={classes.formControl}>
               <InputLabel htmlFor="stage-simple" >Select Stage Details</InputLabel>
               <Select
                 value="tmp"
@@ -194,7 +197,9 @@ class Dashboard extends React.Component {
                 <MenuItem value={20}>Twenty</MenuItem>
                 <MenuItem value={30}>Thirty</MenuItem>
               </Select>
+            </FormControl>
 
+            <FormControl className={classes.formControl}>
               <InputLabel htmlFor="stage-simple" >Select A Game</InputLabel>
               <Select
                 value="tmp"
