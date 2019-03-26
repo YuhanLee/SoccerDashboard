@@ -163,7 +163,6 @@ class Dashboard extends React.Component {
         <h5 style={{color: 'red'}}> TODO: buttons should have rounded black border like: <img src={buttonExample} alt="wew" /></h5>
       </div>
 
-
       <div className={classes.actionBarStyle}>
         <div className={classes.selectionInputs}>
           <form className={classes.root} autoComplete="off">
@@ -224,9 +223,8 @@ class Dashboard extends React.Component {
           <FontAwesomeIcon className={classes.icons} size="sm" icon="sync" />
         </IconButton>
 
-
         <IconButton className={classes.button} onClick={this.onEditDashboard}  aria-label="Edit">
-          <EditSaveIcon editMode={this.state.editMode} onClick={this.onEditDashboard} />
+          <EditSaveIcon editMode={this.state.editMode} />
         </IconButton>
 
         <IconButton className={classes.button} aria-label="Help">
