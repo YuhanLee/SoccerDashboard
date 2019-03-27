@@ -1,5 +1,4 @@
 import React from "react";
-import { Route } from 'react-router-dom';
 import _ from "lodash";
 import { withStyles } from '@material-ui/core/styles';
 import { Responsive, WidthProvider } from "react-grid-layout";
@@ -8,10 +7,12 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
+import Grid from'@material-ui/core/Grid'; 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import IconButton from '@material-ui/core/IconButton';
 import { faPencilAlt, faQuestionCircle, faSync, faSave } from '@fortawesome/free-solid-svg-icons'
+import SubstitutionContainer  from './SubstitutionContainer'; 
 
 library.add(faPencilAlt, faQuestionCircle, faSync, faSave)
 
@@ -95,15 +96,6 @@ class Dashboard extends React.Component {
     this.setState({ mounted: true });
   }
 
-  generateDOM() {
-    return _.map(this.state.layouts.lg, function(l, i) {
-      return (
-        <div key={i} style={{backgroundColor: "yellow"}}>
-          <Route exact path='/' render={(props) => <Container title={l.title}{...props}>{i}</Container>} />
-        </div>
-      );
-    });
-  }
   onBreakpointChange = breakpoint => {
     this.setState({
       currentBreakpoint: breakpoint
@@ -117,6 +109,13 @@ class Dashboard extends React.Component {
     const { classes } = this.props;
     return (
       <div className={classes.gridStyle}>
+        <Grid
+          style={{backgroundColor: 'pink'}}
+          container
+          direction="row"
+          justify="center"
+          alignItems="center">
+        </Grid>
         <div className={classes.actionBarStyle}>
           <div className={classes.selectionInputs}>
             <form className={classes.root} autoComplete="off">
@@ -204,25 +203,24 @@ class Dashboard extends React.Component {
         compactType={this.state.compactType}
         preventCollision={!this.state.compactType}
       >
-      {/* <div>
-        <div style={{backgroundColor: "yellow"}}>
-          <Route exact path='/' render={(props) => <Container {...props}>wwwww</Container>} />
-        </div>
-        <div style={{backgroundColor: "yellow"}}>
-          <Route exact path='/' render={(props) => <Container {...props}>wwwww</Container>} />
-        </div>
-        <div style={{backgroundColor: "yellow"}}>
-          <Route exact path='/' render={(props) => <Container {...props}>wwwww</Container>} />
-        </div>
-        <div style={{backgroundColor: "yellow"}}>
-          <Route exact path='/' render={(props) => <Container {...props}>wwwww</Container>} />
-        </div>
-        <div style={{backgroundColor: "yellow"}}>
-          <Route exact path='/' render={(props) => <Container {...props}>wwwww</Container>} />
-        </div>
-      </div> */}
 
-      {this.generateDOM()}
+        <div key={0} style={{backgroundColor: "yellow"}}>
+          <Container title="Substitutions"> </Container>
+          <SubstitutionContainer/>
+        </div>
+        <div key={1} style={{backgroundColor: "yellow"}}>
+          <Container title="Game Stats"></Container>
+        </div>  
+        <div key={2} style={{backgroundColor: "yellow"}}>
+          <Container title="Lineup"></Container>
+        </div>
+        <div key={3} style={{backgroundColor: "yellow"}}>
+          <Container title="Game Stats"></Container>
+        </div>
+        <div key={4} style={{backgroundColor: "yellow"}}>
+          <Container title="Timeline"></Container>
+        </div>
+
       </ResponsiveReactGridLayout>
 
       </div>
@@ -232,13 +230,13 @@ class Dashboard extends React.Component {
 
 
 function generateDefaultLayout() {
-  var scoreContainer = {x: 7, y: 0, w: 3, h: 19, i: "0", title: "Score Stats"};
-  var substitutions = {x: 3, y: 0, w: 4, h: 4, i: "1", title: "Substitutions"};
-  var lineUpContainer = {x: 3, y: 4, w: 4, h: 9, i: "2", title: "Lineup"};
-  var gameStatsContainer = {x: 3, y: 13, w: 4, h: 6, i: "3", title: "Game Stats"};
-  var timelineContainer = {x: 0, y: 0, w: 3, h: 19, i: "4", title: "Timeline"};
+  var subContainer = {x: 7, y: 0, w: 3, h: 19, i: "0"};
+  var scoreContainer = {x: 3, y: 0, w: 4, h: 4, i: "1"};
+  var lineUpContainer = {x: 3, y: 4, w: 4, h: 9, i: "2"};
+  var gameStatsContainer = {x: 3, y: 13, w: 4, h: 6, i: "3"};
+  var timelineContainer = {x: 0, y: 0, w: 3, h: 19, i: "4"};
 
-  var originalContainerConfig = [ scoreContainer, substitutions, lineUpContainer, gameStatsContainer, timelineContainer]; 
+  var originalContainerConfig = [ subContainer, scoreContainer, lineUpContainer, gameStatsContainer, timelineContainer]; 
   return originalContainerConfig; 
 }
 
