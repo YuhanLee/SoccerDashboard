@@ -1,5 +1,4 @@
 import React from "react";
-import _ from "lodash";
 import { withStyles } from '@material-ui/core/styles';
 import { Responsive, WidthProvider } from "react-grid-layout";
 import Container from "./Container"; 
@@ -13,6 +12,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import IconButton from '@material-ui/core/IconButton';
 import { faPencilAlt, faQuestionCircle, faSync, faSave } from '@fortawesome/free-solid-svg-icons'
 import SubstitutionContainer  from './SubstitutionContainer'; 
+import LineupContainer from './LineupContainer'; 
+import ScoreBoardContainer from './ScoreBoardContainer'; 
 
 library.add(faPencilAlt, faQuestionCircle, faSync, faSave)
 
@@ -209,13 +210,16 @@ class Dashboard extends React.Component {
           <SubstitutionContainer/>
         </div>
         <div key={1} style={{backgroundColor: "yellow"}}>
-          <Container title="Game Stats"></Container>
+          <Container title="Scoreboard"></Container>
+        <ScoreBoardContainer/>
+         
         </div>  
         <div key={2} style={{backgroundColor: "yellow"}}>
           <Container title="Lineup"></Container>
+          {/* <LineupContainer/>  */}
         </div>
         <div key={3} style={{backgroundColor: "yellow"}}>
-          <Container title="Game Stats"></Container>
+        <Container title="Game Stats"></Container>
         </div>
         <div key={4} style={{backgroundColor: "yellow"}}>
           <Container title="Timeline"></Container>

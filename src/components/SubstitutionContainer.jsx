@@ -67,15 +67,16 @@ class SubstitutionContainer extends React.Component {
               <CustomTableCell align="center">Croatia</CustomTableCell>
             </TableRow>
           </TableHead>
-          <TableBody>
-            {
-              sub.map(row => (
+          {
+            sub.map(row => (
+            <TableBody key={row.id}>
               <TableRow className={classes.row} key={row.id}>
                 <CustomTableCell align="center">{row.franceName}</CustomTableCell>
                 <CustomTableCell align="center">{row.croatiaName}</CustomTableCell>
               </TableRow>
-            ))}
-          </TableBody>
+            </TableBody>            
+            ))
+          }
         </Table>
       </Paper>
     );
