@@ -2,11 +2,15 @@
 import { withStyles } from '@material-ui/core/styles';
 import React from "react";
 import Table from "@material-ui/core/Table";
+import Grid from '@material-ui/core/Grid';
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+import Avatar from '@material-ui/core/Avatar';
+import franceFlag from '../../src/icons/country_icons/france.png'; 
+import croatiaFlag from '../../src/icons/country_icons/croatia.png'; 
 
 const CustomTableCell = withStyles(theme => ({
   head: {
@@ -31,7 +35,10 @@ const styles = theme => ({
     "&:nth-of-type(odd)": {
       backgroundColor: theme.palette.background.default
     }
-  }
+  },
+  avatar: {
+    margin: 10,
+  },
 });
 
 const sub = [
@@ -54,7 +61,6 @@ function createData(franceName, croatiaName) {
   return { id, franceName, croatiaName };
 }
 class SubstitutionContainer extends React.Component {
-
   render() {
     const { classes } = this.props;
 
@@ -63,8 +69,18 @@ class SubstitutionContainer extends React.Component {
         <Table className={classes.table}>
           <TableHead>
             <TableRow>
-              <CustomTableCell align="center">France</CustomTableCell>
-              <CustomTableCell align="center">Croatia</CustomTableCell>
+              <CustomTableCell align="center">
+                <Grid container justify="center" alignItems="center" direction="row">
+                  <Avatar className={classes.avatar} src={franceFlag} alt="france"/>
+                  <h3>France</h3>
+                </Grid>
+              </CustomTableCell>
+              <CustomTableCell align="center">
+                <Grid container justify="center" alignItems="center" direction="row">
+                  <Avatar className={classes.avatar} src={croatiaFlag} alt="croatia"/>
+                  <h3>Croatia</h3>
+                </Grid>
+              </CustomTableCell>
             </TableRow>
           </TableHead>
           {

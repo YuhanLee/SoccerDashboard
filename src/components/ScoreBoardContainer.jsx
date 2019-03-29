@@ -4,6 +4,8 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Avatar from '@material-ui/core/Avatar';
+import franceFlag from '../../src/icons/country_icons/france.png'; 
+import croatiaFlag from '../../src/icons/country_icons/croatia.png'; 
 
 const styles = theme => ({
   root:{
@@ -17,6 +19,11 @@ const styles = theme => ({
     height : 30,
   },
 
+  gridStyle: {
+    display: 'flex', 
+    justifyContent: 'center'
+  },
+
   board:{
     margin: 'auto',
   },
@@ -28,39 +35,28 @@ class ScoreBoardContainer extends React.Component{
     return(
       <div className ={classes.root}>
         <div>
-          <Paper className={classes.time}>
-              <Typography> July 7th 2018</Typography>
-          </Paper>
-        </div>
-        <div>
-          <Grid display = 'flex' justifyContent ='center'>
-            <Paper className ={classes.board}>
-              <Grid>
-                <Grid item>
-                  <Avatar alt="Fr" scr ="/icons/861498-soccer/png/france.png"/>
-                </Grid>
-                <Grid item>
-                  <Typography variant ='h6' gutterBottom> France </Typography>
-                </Grid>
+          <Grid className={classes.gridStyle}>
+            <Grid>
+              <Grid item>
+                <Avatar alt="Fr" src={franceFlag}/>
               </Grid>
-            </Paper>
-            <Paper className ={classes.board}>
-              <Grid>
+              <Grid item>
+                <h3>France </h3>
+              </Grid>
+            </Grid>
+              
                 <Grid item>
                   <Typography gutterBottom> 4:1 </Typography>
                 </Grid>
-              </Grid>
-            </Paper>
-            <Paper className ={classes.board}>
+              
               <Grid>
                 <Grid item>
-                  <Avatar alt="Cr" scr ="/icons/861498-soccer/png/crotia.png"/>
+                  <Avatar alt="Cr" src={croatiaFlag}/>
                 </Grid>
-                <Grid item >
-                  <Typography variant ='h6' gutterBottom> Croatia </Typography>
+                <Grid item>
+                  <h3>Croatia </h3>
                 </Grid>
               </Grid>
-            </Paper>
           </Grid>>
         </div>
       </div>
