@@ -45,23 +45,23 @@ class ScoreBoardContainer extends React.Component{
               </Grid>
             </Grid>
               
-                <Grid item>
-                  <Typography gutterBottom> 4:1 </Typography>
-                </Grid>
+            <Grid item>
+              <Typography gutterBottom> 4:2 </Typography>
+            </Grid>
               
-              <Grid>
-                <Grid item>
-                  <Avatar alt="Cr" src={croatiaFlag}/>
-                </Grid>
-                <Grid item>
-                  <h3>Croatia </h3>
-                </Grid>
+            <Grid>
+              <Grid item>
+                <Avatar alt="Cr" src={croatiaFlag}/>
               </Grid>
-          </Grid>>
+              <Grid item>
+                <h3>Croatia </h3>
+              </Grid>
+            </Grid>
+          </Grid>
         </div>
       </div>
     )
   }
 }
 
-export default withStyles(styles)(ScoreBoardContainer);
+export default withStyles(styles)(ScoreBoardContainer); 

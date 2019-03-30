@@ -14,6 +14,7 @@ import { faPencilAlt, faQuestionCircle, faSync, faSave } from '@fortawesome/free
 import SubstitutionContainer  from './SubstitutionContainer'; 
 import LineupContainer from './LineupContainer'; 
 import ScoreBoardContainer from './ScoreBoardContainer'; 
+import TimelineContainer from "./TimelineContainer";
 
 library.add(faPencilAlt, faQuestionCircle, faSync, faSave)
 
@@ -205,24 +206,25 @@ class Dashboard extends React.Component {
         preventCollision={!this.state.compactType}
       >
 
-        <div key={0} style={{backgroundColor: "yellow"}}>
+        <div key={0} style={{backgroundColor: "white"}}>
           <Container title="Substitutions"> </Container>
           <SubstitutionContainer/>
         </div>
-        <div key={1} style={{backgroundColor: "yellow"}}>
+        <div key={1} style={{backgroundColor: "white"}}>
           <Container title="Scoreboard"></Container>
         <ScoreBoardContainer/>
          
         </div>  
-        <div key={2} style={{backgroundColor: "yellow"}}>
+        <div key={2} style={{backgroundColor: "white"}}>
           <Container title="Lineup"></Container>
           {/* <LineupContainer/>  */}
         </div>
-        <div key={3} style={{backgroundColor: "yellow"}}>
+        <div key={3} style={{backgroundColor: "white"}}>
         <Container title="Game Stats"></Container>
         </div>
-        <div key={4} style={{backgroundColor: "yellow"}}>
+        <div key={4} style={{backgroundColor: "#45bc67", overflowY: 'auto'}}>
           <Container title="Timeline"></Container>
+          <TimelineContainer style={{overflowY: 'auto'}}/>
         </div>
 
       </ResponsiveReactGridLayout>
