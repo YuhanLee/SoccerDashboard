@@ -41,7 +41,7 @@ class ScoreBoardContainer extends React.Component{
                 <Avatar alt="Fr" src={franceFlag}/>
               </Grid>
               <Grid item>
-                <h3>France </h3>
+                <h4>France </h4>
               </Grid>
             </Grid>
               
@@ -54,7 +54,7 @@ class ScoreBoardContainer extends React.Component{
                 <Avatar alt="Cr" src={croatiaFlag}/>
               </Grid>
               <Grid item>
-                <h3>Croatia </h3>
+                <h4>Croatia </h4>
               </Grid>
             </Grid>
           </Grid>
