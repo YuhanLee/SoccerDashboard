@@ -8,24 +8,19 @@ import franceFlag from '../../src/icons/country_icons/france.png';
 import croatiaFlag from '../../src/icons/country_icons/croatia.png'; 
 
 const styles = theme => ({
-  root:{
+
+  gridStyle: {
+    display: 'flex', 
+    justifyContent: 'center',
+    alignItems: 'center',
+    direction:'row',
+    spacing: 20,
     height: '100%',
     width: '100%',
   },
 
-  time: {
-    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-    height : 30,
-  },
-
-  gridStyle: {
-    display: 'flex', 
-    justifyContent: 'center'
-  },
-
-  board:{
-    margin: 'auto',
+  avatar: {
+    margin: 5,
   },
 });
 class ScoreBoardContainer extends React.Component{ 
@@ -33,33 +28,22 @@ class ScoreBoardContainer extends React.Component{
     const { classes } = this.props;
 
     return(
-      <div className ={classes.root}>
-        <div>
-          <Grid className={classes.gridStyle}>
-            <Grid>
-              <Grid item>
-                <Avatar alt="Fr" src={franceFlag}/>
-              </Grid>
-              <Grid item>
-                <h3>France </h3>
-              </Grid>
-            </Grid>
-              
-            <Grid item>
-              <Typography gutterBottom> 4:2 </Typography>
-            </Grid>
-              
-            <Grid>
-              <Grid item>
-                <Avatar alt="Cr" src={croatiaFlag}/>
-              </Grid>
-              <Grid item>
-                <h3>Croatia </h3>
-              </Grid>
-            </Grid>
+        <Grid className={classes.gridStyle}>
+          <Grid container justify="center" alignItems="center" direction="row" padding-top = "10">
+                <Avatar className={classes.avatar} alt="Fr" src={franceFlag}/>
+                <h3>France</h3>
           </Grid>
-        </div>
-      </div>
+ 
+              
+          <Grid>
+              <Typography container variant ="h2"> 4:2 </Typography>
+          </Grid>
+              
+          <Grid container justify="center" alignItems="center" direction="row">
+              <Avatar className={classes.avatar} alt="Cr" src={croatiaFlag}/>
+              <h3>Croatia </h3>
+          </Grid>
+        </Grid>
     )
   }
 }
