@@ -100,8 +100,8 @@ const styles = theme => ({
 
   subLoader: {
     padding: '20px', 
-    paddingTop: '1000px', 
-    paddingBottom: '300px', 
+    paddingTop: '250px', 
+    paddingBottom: '1000px', 
     display:'flex', 
     flex: 1,
     justifyContent: 'center',
@@ -110,7 +110,7 @@ const styles = theme => ({
 
   scoreLoader: {
     padding: '20px', 
-    paddingBottom: '100px', 
+    paddingBottom: '1000px', 
     display:'flex', 
     flex: 1,
     justifyContent: 'center',
