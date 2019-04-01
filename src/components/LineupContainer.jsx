@@ -22,11 +22,11 @@ class LineupContainer extends React.Component {
     return (
       <div className={classes.root}>
         <div>
-          <img className={classes.lineUpImage} src={franceLineup}></img>
+          <img className={classes.lineUpImage} alt="franceLineupImage" src={franceLineup}></img>
         </div>
 
         <div>
-          <img className={classes.lineUpImage} src={croatiaLineup}></img>
+          <img className={classes.lineUpImage} alt="croatiaLineupImage" src={croatiaLineup}></img>
         </div>
       </div>
     );

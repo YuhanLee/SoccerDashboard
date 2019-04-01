@@ -29,7 +29,7 @@ const styles = theme => ({
     overflowY: "scroll"
   },
   table: {
-    minWidth: 200
+    minWidth: 200,
   },
   row: {
     "&:nth-of-type(odd)": {
@@ -70,13 +70,13 @@ class SubstitutionContainer extends React.Component {
         <Table className={classes.table}>
           <TableHead>
             <TableRow>
-              <CustomTableCell align="center">
+              <CustomTableCell style={{backgroundColor: '#282c34'}} align="center">
                 <Grid container justify="center" alignItems="center" direction="row">
                   <Avatar className={classes.avatar} src={franceFlag} alt="france"/>
                   <h3>France</h3>
                 </Grid>
               </CustomTableCell>
-              <CustomTableCell align="center">
+              <CustomTableCell style={{backgroundColor: '#282c34'}} align="center">
                 <Grid container justify="center" alignItems="center" direction="row">
                   <Avatar className={classes.avatar} src={croatiaFlag} alt="croatia"/>
                   <h3>Croatia</h3>

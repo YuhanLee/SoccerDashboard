@@ -1,7 +1,5 @@
 
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Grid from'@material-ui/core/Grid'; 
 import React from "react";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -32,7 +30,6 @@ const styles = theme => ({
   root: {
     width: "100%",
     overflowX: "auto",
-    overflowY: "scroll",
   },
   table: {
     minWidth: 200
@@ -42,6 +39,10 @@ const styles = theme => ({
       backgroundColor: theme.palette.background.default
     }
   },
+
+  tableHead: {
+    backgroundColor: '#282c34', 
+  }, 
 
   head:{
     align: "center",
@@ -68,13 +69,13 @@ const rows = [
         <Table className={classes.table}>
           <TableHead>
             <TableRow>
-              <CustomTableCell align="center"><Avatar src={teamIcon}></Avatar><h3>Teams</h3></CustomTableCell>
-              <CustomTableCell align="center"><Avatar src={shotsIcon}></Avatar><h3>Shots</h3></CustomTableCell>
-              <CustomTableCell align="center"><Avatar src={shotsAccuracyIcon}></Avatar><h3>Shot Accuracy</h3></CustomTableCell>
-              <CustomTableCell align="center"><Avatar src={passesIcon}></Avatar><h3>Passes</h3></CustomTableCell>
-              <CustomTableCell align="center"><Avatar src={cornerIcon}></Avatar><h3>Corners</h3></CustomTableCell>
-              <CustomTableCell align="center"><Avatar src={yellowCardIcon}></Avatar><h3>Yellow Card</h3></CustomTableCell>
-              <CustomTableCell align="center"><Avatar src={redCardIcon}></Avatar><h3>Red Card</h3></CustomTableCell>
+              <CustomTableCell className={classes.tableHead} align="center"><Avatar src={teamIcon}></Avatar><h3>Teams</h3></CustomTableCell>
+              <CustomTableCell className={classes.tableHead} align="center"><Avatar src={shotsIcon}></Avatar><h3>Shots</h3></CustomTableCell>
+              <CustomTableCell className={classes.tableHead} align="center"><Avatar src={shotsAccuracyIcon}></Avatar><h3>Shot Accuracy</h3></CustomTableCell>
+              <CustomTableCell className={classes.tableHead} align="center"><Avatar src={passesIcon}></Avatar><h3>Passes</h3></CustomTableCell>
+              <CustomTableCell className={classes.tableHead} align="center"><Avatar src={cornerIcon}></Avatar><h3>Corners</h3></CustomTableCell>
+              <CustomTableCell className={classes.tableHead} align="center"><Avatar src={yellowCardIcon}></Avatar><h3>Yellow Card</h3></CustomTableCell>
+              <CustomTableCell className={classes.tableHead} align="center"><Avatar src={redCardIcon}></Avatar><h3>Red Card</h3></CustomTableCell>
             </TableRow>
           </TableHead>
           <TableBody>

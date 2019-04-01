@@ -5,7 +5,6 @@ import Grid from '@material-ui/core/Grid';
 import Avatar from '@material-ui/core/Avatar';
 import franceFlag from '../../src/icons/country_icons/france.png'; 
 import croatiaFlag from '../../src/icons/country_icons/croatia.png'; 
-import { red } from '@material-ui/core/colors';
 
 const styles = theme => ({
   scoreBoard: {

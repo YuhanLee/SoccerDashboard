@@ -6,7 +6,6 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
-import Grid from'@material-ui/core/Grid'; 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import IconButton from '@material-ui/core/IconButton';
@@ -62,7 +61,6 @@ const styles = theme => ({
     minWidth: 200, 
     paddingTop: 20, 
     textAlign: 'left', 
-    // display: 'inline-block',
   },
 
   actionButtons: {
@@ -134,6 +132,7 @@ const styles = theme => ({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center', 
+    // overflowY: 'scroll', 
   },  
 });
 
@@ -141,7 +140,6 @@ class Dashboard extends React.Component {
   static defaultProps = {
     className: "layout",
     rowHeight: 30,
-    // onLayoutChange: function() {},
     cols: { lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 },
     initialLayout: generateDefaultLayout(), 
   };
@@ -171,9 +169,7 @@ class Dashboard extends React.Component {
   }; 
 
   onRefreshData = () => {
-    var self = this;
     this.setState({refreshMode : !this.state.refreshMode})
-
     setTimeout(this.refreshDone, 2000);   
   }
 
@@ -184,7 +180,7 @@ class Dashboard extends React.Component {
   getTimelineStyle = () => {
     return {
       overflowY: 'scroll', 
-      backgroundColor: this.state.refreshMode ? 'white' : '#45bc67'
+      backgroundColor: this.state.refreshMode ? 'white' : '#282c34'
      }
   }
 
@@ -197,7 +193,7 @@ class Dashboard extends React.Component {
         {/* TODO: make this header text align center?  There is some issue with the CSS I added*/}
         {/* TODO: Check UI friendly on different sizes of screen  */}
 
-        <Button style={{color: 'white', marginLeft: '1200px', backgroundColor: '#45bc67'}}>Log in </Button>
+        {/* <Button style={{color: 'white', marginLeft: '1200px', backgroundColor: '#45bc67'}}>Log in </Button> */}
 
       </div>
       <div className={classes.background}>
@@ -281,8 +277,6 @@ class Dashboard extends React.Component {
         isDraggable= {this.state.editMode}
         isResizable= {this.state.editMode}
         autoSize={true}
-        // I like to have it animate on mount. If you don't, delete `useCSSTransforms` (it's default `true`)
-        // and set `measureBeforeMount={true}`.
         useCSSTransforms={this.state.mounted}
         compactType={this.state.compactType}
         preventCollision={!this.state.compactType}
@@ -293,7 +287,7 @@ class Dashboard extends React.Component {
           {
             this.state.refreshMode && 
             <div className={classes.subLoader}>
-              <ReactLoading type={'spinningBubbles'} color={'black'} height={'30%'} width={'30%'} />
+              <ReactLoading type={'spinningBubbles'} color={'#282c34'} height={'30%'} width={'30%'} />
             </div>
           }
           <SubstitutionContainer/>
@@ -304,7 +298,7 @@ class Dashboard extends React.Component {
           {
             this.state.refreshMode && 
             <div className={classes.scoreLoader}>
-              <ReactLoading type={'spinningBubbles'} color={'black'} height={'8%'} width={'8%'} />
+              <ReactLoading type={'spinningBubbles'} color={'#282c34'} height={'8%'} width={'8%'} />
             </div>
           }
           <ScoreBoardContainer/>
@@ -316,18 +310,18 @@ class Dashboard extends React.Component {
           {
             this.state.refreshMode && 
             <div className={classes.lineupLoader}>
-              <ReactLoading type={'spinningBubbles'} color={'black'} height={'20%'} width={'20%'} />
+              <ReactLoading type={'spinningBubbles'} color={'#282c34'} height={'20%'} width={'20%'} />
             </div>
           }
 
           <LineupContainer/> 
         </div>
-        <div key={3} style={{backgroundColor: "white"}}>
+        <div key={3} style={{backgroundColor: "white", overflowY: 'auto'}}>
         <Container title="Game Stats"></Container>
           {
             this.state.refreshMode && 
             <div className={classes.gameStatsLoader}>
-              <ReactLoading type={'spinningBubbles'} color={'black'} height={'20%'} width={'20%'} />
+              <ReactLoading type={'spinningBubbles'} color={'#282c34'} height={'20%'} width={'20%'} />
             </div>
           }
           <GameStatsContainer/>
@@ -339,7 +333,7 @@ class Dashboard extends React.Component {
           {
             this.state.refreshMode && 
             <div className={classes.subLoader}>
-              <ReactLoading type={'spinningBubbles'} color={'black'} height={'30%'} width={'30%'} />
+              <ReactLoading type={'spinningBubbles'} color={'#282c34'} height={'30%'} width={'30%'} />
             </div>
           }
           <TimelineContainer style={this.getTimelineStyle()}/>
@@ -355,11 +349,11 @@ class Dashboard extends React.Component {
 
 
 function generateDefaultLayout() {
-  var subContainer = {x: 7, y: 0, w: 3, h: 19, i: "0"};
-  var scoreContainer = {x: 3, y: 0, w: 4, h: 4, i: "1"};
+  var subContainer = {x: 7, y: 0, w: 3, h: 20, i: "0"};
+  var scoreContainer = {x: 3, y: 0, w: 4, h: 5, i: "1"};
   var lineUpContainer = {x: 3, y: 4, w: 4, h: 8, i: "2"};
   var gameStatsContainer = {x: 3, y: 12, w: 4, h: 7, i: "3"};
-  var timelineContainer = {x: 0, y: 0, w: 3, h: 19, i: "4"};
+  var timelineContainer = {x: 0, y: 0, w: 3, h: 20, i: "4"};
 
   var originalContainerConfig = [ subContainer, scoreContainer, lineUpContainer, gameStatsContainer, timelineContainer]; 
   return originalContainerConfig; 
