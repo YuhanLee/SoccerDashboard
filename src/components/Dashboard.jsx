@@ -41,9 +41,32 @@ const styles = theme => ({
     justifyContent: 'center', 
     display: 'flex', 
   }, 
+
+  div: {
+    display: 'flex', 
+    flexDirection: 'row', 
+    flexWrap: 'wrap', 
+  }, 
+
+  logInButton: {
+    color: 'white', 
+    marginLeft: '620px',
+    marginTop: '20px', 
+    paddingRight: '18px', 
+    paddingLeft: '18px', 
+    backgroundColor: '#FF6B6B', 
+    height: '50%', 
+
+    "&:hover": {
+      background: "#ff9a9a"
+    },
+  }, 
+
   button: {
     margin: (theme.spacing.unit)/2,
+    color: '#FF6B6B',
   },
+
   root: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -188,161 +211,163 @@ class Dashboard extends React.Component {
     const { classes } = this.props;
     return (
       <div>
-      <div className={classes.header}>
-        <h1>World Cup 2018: Match Dashboard</h1> 
-        {/* TODO: make this header text align center?  There is some issue with the CSS I added*/}
-        {/* TODO: Check UI friendly on different sizes of screen  */}
+        <div className={classes.header}>
+          <div className={classes.div}></div>
+          <div><h1 style={{marginLeft: '600px'}}>World Cup 2018: Match Dashboard</h1></div>
+          <div> <Button className={classes.logInButton}> <h4>Log in</h4></Button></div>
+         
+          {/* TODO: make this header text align center?  There is some issue with the CSS I added*/}
+          {/* TODO: Check UI friendly on different sizes of screen  */}
 
-        {/* <Button style={{color: 'white', marginLeft: '1200px', backgroundColor: '#45bc67'}}>Log in </Button> */}
-
-      </div>
-      <div className={classes.background}>
-        <div className={classes.actionBarStyle}>
-          <div className={classes.selectionInputs}>
-            <form className={classes.root} autoComplete="off">
-              <FormControl className={classes.formControl}>
-                <InputLabel style={{paddingBottom: '10'}} htmlFor="stage-simple"><h4>Select A Stage</h4></InputLabel>
-                <Select
-                  className={classes.selectBox}
-                  value="60"
-                  onChange={this.handleChange}
-                  inputProps={{
-                    name: "stage",
-                    id: "stage-simple"
-                  }}
-                >
-                  <MenuItem value={10}><h4>Group</h4></MenuItem>
-                  <MenuItem value={20}><h4>Round of 16</h4></MenuItem>
-                  <MenuItem value={30}><h4>Quarter Finals</h4></MenuItem>
-                  <MenuItem value={40}><h4>Semi Finals</h4></MenuItem>
-                  <MenuItem value={50}><h4>Third Place Playoff</h4></MenuItem>
-                  <MenuItem value={60}><h4>Final</h4></MenuItem>
-                </Select>
-              </FormControl>
-
-              <FormControl className={classes.formControl}>
-                <InputLabel htmlFor="stage-simple"><h4>Select Stage Details</h4></InputLabel>
-                <Select
-                  className={classes.selectBox}
-                  value="10"
-                  onChange={this.handleChange}
-                  inputProps={{
-                    name: "details",
-                    id: "details-simple"
-                  }}
-                >
-                  <MenuItem value={10}><h4>Final</h4></MenuItem>
-                </Select>
-              </FormControl>
-
-              <FormControl className={classes.formControl}>
-                <InputLabel className={classes.inputLabel} htmlFor="stage-simple"><h4>Select A Game</h4></InputLabel>
-                <Select
-                  className={classes.selectBox}
-                  value="10"
-                  onChange={this.handleChange}
-                  inputProps={{
-                    name: "game",
-                    id: "game-simple"
-                  }}
-                >
-                  <MenuItem value={10}><h4>France vs. Croatia</h4></MenuItem>
-                </Select>
-              </FormControl>    
-            </form> 
-          </div>    
-        <div className={classes.actionButtons}>
-
-        <IconButton className={classes.button} onClick={this.onRefreshData} aria-label="Sync">
-          <FontAwesomeIcon className={classes.icons} size="sm" icon="sync" />
-        </IconButton>
-
-        <IconButton className={classes.button} onClick={this.onEditDashboard}  aria-label="Edit">
-          <EditSaveIcon editMode={this.state.editMode} />
-        </IconButton>
-
-        <IconButton className={classes.button} aria-label="Help">
-          <FontAwesomeIcon className={classes.icons} size="sm" icon="question-circle" />
-        </IconButton>
-        </div>
-      </div>
-    
-      <ResponsiveReactGridLayout
-        {...this.props}
-        layouts={this.state.layouts}
-        breakpoints={{lg: 2000, md: 996, sm: 768, xs: 480, xxs: 0}}
-        onBreakpointChange={this.onBreakpointChange}
-        // WidthProvider option
-        measureBeforeMount={true}
-        isDraggable= {this.state.editMode}
-        isResizable= {this.state.editMode}
-        autoSize={true}
-        useCSSTransforms={this.state.mounted}
-        compactType={this.state.compactType}
-        preventCollision={!this.state.compactType}
-      >
-
-        <div key={0} style={{backgroundColor: "white", overflowY: 'auto'}}>
-          <Container title="Substitutions"></Container>
-          {
-            this.state.refreshMode && 
-            <div className={classes.subLoader}>
-              <ReactLoading type={'spinningBubbles'} color={'#282c34'} height={'30%'} width={'30%'} />
-            </div>
-          }
-          <SubstitutionContainer/>
          
         </div>
-        <div key={1} style={{backgroundColor: "white"}}>
-          <Container title="Scoreboard"></Container>
-          {
-            this.state.refreshMode && 
-            <div className={classes.scoreLoader}>
-              <ReactLoading type={'spinningBubbles'} color={'#282c34'} height={'8%'} width={'8%'} />
-            </div>
-          }
-          <ScoreBoardContainer/>
-         
-        </div>  
-        <div key={2} style={{backgroundColor: "white", overflowY: 'auto'}}>
-          <Container title="Lineup"></Container>
+        <div className={classes.background}>
+          <div className={classes.actionBarStyle}>
+            <div className={classes.selectionInputs}>
+              <form className={classes.root} autoComplete="off">
+                <FormControl className={classes.formControl}>
+                  <InputLabel style={{paddingBottom: '10'}} htmlFor="stage-simple"><h4>Select A Stage</h4></InputLabel>
+                  <Select
+                    className={classes.selectBox}
+                    value="60"
+                    onChange={this.handleChange}
+                    inputProps={{
+                      name: "stage",
+                      id: "stage-simple"
+                    }}
+                  >
+                    <MenuItem value={10}><h4>Group</h4></MenuItem>
+                    <MenuItem value={20}><h4>Round of 16</h4></MenuItem>
+                    <MenuItem value={30}><h4>Quarter Finals</h4></MenuItem>
+                    <MenuItem value={40}><h4>Semi Finals</h4></MenuItem>
+                    <MenuItem value={50}><h4>Third Place Playoff</h4></MenuItem>
+                    <MenuItem value={60}><h4>Final</h4></MenuItem>
+                  </Select>
+                </FormControl>
 
-          {
-            this.state.refreshMode && 
-            <div className={classes.lineupLoader}>
-              <ReactLoading type={'spinningBubbles'} color={'#282c34'} height={'20%'} width={'20%'} />
-            </div>
-          }
+                <FormControl className={classes.formControl}>
+                  <InputLabel htmlFor="stage-simple"><h4>Select Stage Details</h4></InputLabel>
+                  <Select
+                    className={classes.selectBox}
+                    value="10"
+                    onChange={this.handleChange}
+                    inputProps={{
+                      name: "details",
+                      id: "details-simple"
+                    }}
+                  >
+                    <MenuItem value={10}><h4>Final</h4></MenuItem>
+                  </Select>
+                </FormControl>
 
-          <LineupContainer/> 
+                <FormControl className={classes.formControl}>
+                  <InputLabel className={classes.inputLabel} htmlFor="stage-simple"><h4>Select A Game</h4></InputLabel>
+                  <Select
+                    className={classes.selectBox}
+                    value="10"
+                    onChange={this.handleChange}
+                    inputProps={{
+                      name: "game",
+                      id: "game-simple"
+                    }}
+                  >
+                    <MenuItem value={10}><h4>France vs. Croatia</h4></MenuItem>
+                  </Select>
+                </FormControl>    
+              </form> 
+            </div>    
+          <div className={classes.actionButtons}>
+
+          <IconButton className={classes.button} onClick={this.onRefreshData} aria-label="Sync">
+            <FontAwesomeIcon className={classes.icons} size="sm" icon="sync" />
+          </IconButton>
+
+          <IconButton className={classes.button} onClick={this.onEditDashboard}  aria-label="Edit">
+            <EditSaveIcon editMode={this.state.editMode} />
+          </IconButton>
+
+          <IconButton className={classes.button} aria-label="Help">
+            <FontAwesomeIcon className={classes.icons} size="sm" icon="question-circle" />
+          </IconButton>
+          </div>
         </div>
-        <div key={3} style={{backgroundColor: "white", overflowY: 'auto'}}>
-        <Container title="Game Stats"></Container>
-          {
-            this.state.refreshMode && 
-            <div className={classes.gameStatsLoader}>
-              <ReactLoading type={'spinningBubbles'} color={'#282c34'} height={'20%'} width={'20%'} />
-            </div>
-          }
-          <GameStatsContainer/>
-        
-        </div>
-    
-        <div key={4} style={this.getTimelineStyle()}>
-          <Container title="Timeline"></Container>
-          {
-            this.state.refreshMode && 
-            <div className={classes.subLoader}>
-              <ReactLoading type={'spinningBubbles'} color={'#282c34'} height={'30%'} width={'30%'} />
-            </div>
-          }
-          <TimelineContainer style={this.getTimelineStyle()}/>
-        </div>
+      
+        <ResponsiveReactGridLayout
+          {...this.props}
+          layouts={this.state.layouts}
+          breakpoints={{lg: 2000, md: 996, sm: 768, xs: 480, xxs: 0}}
+          onBreakpointChange={this.onBreakpointChange}
+          // WidthProvider option
+          measureBeforeMount={true}
+          isDraggable= {this.state.editMode}
+          isResizable= {this.state.editMode}
+          autoSize={true}
+          useCSSTransforms={this.state.mounted}
+          compactType={this.state.compactType}
+          preventCollision={!this.state.compactType}
+        >
 
-      </ResponsiveReactGridLayout>
+          <div key={0} style={{backgroundColor: "white", overflowY: 'auto'}}>
+            <Container title="Substitutions"></Container>
+            {
+              this.state.refreshMode && 
+              <div className={classes.subLoader}>
+                <ReactLoading type={'spinningBubbles'} color={'#282c34'} height={'30%'} width={'30%'} />
+              </div>
+            }
+            <SubstitutionContainer/>
+          
+          </div>
+          <div key={1} style={{backgroundColor: "white"}}>
+            <Container title="Scoreboard"></Container>
+            {
+              this.state.refreshMode && 
+              <div className={classes.scoreLoader}>
+                <ReactLoading type={'spinningBubbles'} color={'#282c34'} height={'8%'} width={'8%'} />
+              </div>
+            }
+            <ScoreBoardContainer/>
+          
+          </div>  
+          <div key={2} style={{backgroundColor: "white", overflowY: 'auto'}}>
+            <Container title="Lineup"></Container>
 
+            {
+              this.state.refreshMode && 
+              <div className={classes.lineupLoader}>
+                <ReactLoading type={'spinningBubbles'} color={'#282c34'} height={'20%'} width={'20%'} />
+              </div>
+            }
+
+            <LineupContainer/> 
+          </div>
+          <div key={3} style={{backgroundColor: "white", overflowY: 'auto'}}>
+          <Container title="Game Stats"></Container>
+            {
+              this.state.refreshMode && 
+              <div className={classes.gameStatsLoader}>
+                <ReactLoading type={'spinningBubbles'} color={'#282c34'} height={'20%'} width={'20%'} />
+              </div>
+            }
+            <GameStatsContainer/>
+          
+          </div>
+      
+          <div key={4} style={this.getTimelineStyle()}>
+            <Container title="Timeline"></Container>
+            {
+              this.state.refreshMode && 
+              <div className={classes.subLoader}>
+                <ReactLoading type={'spinningBubbles'} color={'#282c34'} height={'30%'} width={'30%'} />
+              </div>
+            }
+            <TimelineContainer style={this.getTimelineStyle()}/>
+          </div>
+
+        </ResponsiveReactGridLayout>
+
+        </div>
       </div>
-    </div>
     );
   }
 }
