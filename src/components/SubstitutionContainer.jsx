@@ -56,8 +56,9 @@ const sub = [
 ];
 
 let id = 0;
+
 function createData(franceName, croatiaName) {
-  id += 1;
+  id += 1; 
   return { id, franceName, croatiaName };
 }
 class SubstitutionContainer extends React.Component {
@@ -85,10 +86,10 @@ class SubstitutionContainer extends React.Component {
           </TableHead>
           {
             sub.map(row => (
-            <TableBody key={row.id}>
-              <TableRow className={classes.row} key={row.id}>
-                <CustomTableCell align="center">{row.franceName}</CustomTableCell>
-                <CustomTableCell align="center">{row.croatiaName}</CustomTableCell>
+            <TableBody>
+              <TableRow key={row.id} className={classes.row} >
+                <CustomTableCell align="center"><h4>{row.franceName}</h4></CustomTableCell>
+                <CustomTableCell align="center"><h4>{row.croatiaName}</h4></CustomTableCell>
               </TableRow>
             </TableBody>            
             ))

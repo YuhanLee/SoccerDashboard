@@ -1,4 +1,3 @@
-
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import React from "react";
@@ -62,7 +61,7 @@ const events = [
   },  
   {
     title: <h5>71'</h5>,
-    subheader: <h3 style={{subIcon: 'black'}}>Andrej Kramaric SO Ante Rebic</h3>,
+    subheader: <h3 style={{color: 'black'}}>Andrej Kramaric SO Ante Rebic</h3>,
     icon: <Avatar src={goalIcon}></Avatar>,
   },  
   {

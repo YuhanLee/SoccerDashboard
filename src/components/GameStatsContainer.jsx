@@ -25,7 +25,7 @@ const styles = theme => ({
   root: {
     width: "100%",
     overflowX: "auto",
-    overflowY: "scroll"
+    overflowY: "scroll",
   },
   table: {
     minWidth: 200
@@ -75,7 +75,7 @@ const awayteamStats = [
   createData("0"),
 ];
 
- class GameStats extends React.Component {
+ class GameStatsContainer extends React.Component {
 
   render() {
     const { classes } = this.props;
@@ -83,11 +83,13 @@ const awayteamStats = [
     return(
       <Paper className={classes.root}>
         <Table className={classes.table}>
-          <TableRow>     {/* first row  */}
             <TableHead>
+              <TableRow> 
+
               <CustomTableCell className={classes.head}>
                 <h3>        </h3>
               </CustomTableCell>
+              </TableRow>
             </TableHead>
             {
               myStats.map(column =>(
@@ -96,7 +98,6 @@ const awayteamStats = [
                 </TableCell>
               ))
             }
-          </TableRow>
           <TableRow>     {/* 2nd row  */}
             <TableHead>
               <CustomTableCell className={classes.head}>
@@ -128,11 +129,9 @@ const awayteamStats = [
         
         </Table>
       </Paper>
-      
     );
-
   }
  }; 
 
 
- export default withStyles(styles)(GameStats);
+ export default withStyles(styles)(GameStatsContainer);

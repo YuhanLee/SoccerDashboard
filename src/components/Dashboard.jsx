@@ -15,7 +15,9 @@ import SubstitutionContainer  from './SubstitutionContainer';
 import LineupContainer from './LineupContainer'; 
 import ScoreBoardContainer from './ScoreBoardContainer'; 
 import TimelineContainer from "./TimelineContainer";
-import GameStats from "./GameStats";
+import GameStatsContainer from "./GameStatsContainer";
+import ReactLoading from 'react-loading';
+
 
 library.add(faPencilAlt, faQuestionCircle, faSync, faSave)
 
@@ -48,6 +50,7 @@ const styles = theme => ({
 
   selectBox: {
     minWidth: 200, 
+    paddingTop: 20
     // display: 'inline-block',
   },
 
@@ -76,8 +79,44 @@ const styles = theme => ({
     alignContent: 'center', 
     textAlign: 'center'
   }, 
-});
 
+  subLoader: {
+    padding: '20px', 
+    paddingTop: '250px', 
+    paddingBottom: '300px', 
+    display:'flex', 
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+
+  scoreLoader: {
+    padding: '20px', 
+    paddingBottom: '100px', 
+    display:'flex', 
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  }, 
+
+  lineupLoader: {
+    padding: '60px', 
+    paddingBottom: '100px', 
+    display:'flex', 
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center', 
+  }, 
+
+  gameStatsLoader: {
+    padding: '40px', 
+    paddingBottom: '200px', 
+    display:'flex', 
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center', 
+  },  
+});
 
 class Dashboard extends React.Component {
   static defaultProps = {
@@ -93,10 +132,13 @@ class Dashboard extends React.Component {
     mounted: false,
     layouts: { lg: this.props.initialLayout }, 
     editMode: false, 
+    refreshMode: true, 
+    //TODO: fix this refreshMode to true
   };
 
   componentDidMount() {
     this.setState({ mounted: true });
+    setTimeout(this.refreshDone, 2000); //TODO: uncomment this
   }
 
   onBreakpointChange = breakpoint => {
@@ -108,22 +150,34 @@ class Dashboard extends React.Component {
   onEditDashboard = () => {
     this.setState({editMode : !this.state.editMode})
   }; 
+
+  onRefreshData = () => {
+    var self = this;
+    this.setState({refreshMode : !this.state.refreshMode})
+
+    setTimeout(this.refreshDone, 2000);   
+  }
+
+  refreshDone = () => {
+    this.setState({refreshMode : !this.state.refreshMode})
+  }
+
+  getTimelineStyle = () => {
+    return {
+      overflowY: 'scroll', 
+      backgroundColor: this.state.refreshMode ? 'white' : '#45bc67'
+     }
+  }
+
   render() {
     const { classes } = this.props;
     return (
       <div className={classes.gridStyle}>
-        <Grid
-          style={{backgroundColor: 'pink'}}
-          container
-          direction="row"
-          justify="center"
-          alignItems="center">
-        </Grid>
         <div className={classes.actionBarStyle}>
           <div className={classes.selectionInputs}>
             <form className={classes.root} autoComplete="off">
               <FormControl className={classes.formControl}>
-                <InputLabel  htmlFor="stage-simple" >Select A Stage</InputLabel>
+                <InputLabel style={{paddingBottom: '10'}} htmlFor="stage-simple"><h4>Select A Stage</h4></InputLabel>
                 <Select
                   className={classes.selectBox}
                   value="tmp"
@@ -140,7 +194,7 @@ class Dashboard extends React.Component {
               </FormControl>
 
               <FormControl className={classes.formControl}>
-                <InputLabel htmlFor="stage-simple" >Select Stage Details</InputLabel>
+                <InputLabel htmlFor="stage-simple"><h4>Select Stage Details</h4></InputLabel>
                 <Select
                   className={classes.selectBox}
                   value="tmp"
@@ -157,7 +211,7 @@ class Dashboard extends React.Component {
               </FormControl>
 
               <FormControl className={classes.formControl}>
-                <InputLabel className={classes.inputLabel} htmlFor="stage-simple" >Select A Game</InputLabel>
+                <InputLabel className={classes.inputLabel} htmlFor="stage-simple"><h4>Select A Game</h4></InputLabel>
                 <Select
                   className={classes.selectBox}
                   value="tmp"
@@ -176,7 +230,7 @@ class Dashboard extends React.Component {
           </div>    
         <div className={classes.actionButtons}>
 
-        <IconButton className={classes.button} aria-label="Sync">
+        <IconButton className={classes.button} onClick={this.onRefreshData} aria-label="Sync">
           <FontAwesomeIcon className={classes.icons} size="sm" icon="sync" />
         </IconButton>
 
@@ -207,26 +261,61 @@ class Dashboard extends React.Component {
         preventCollision={!this.state.compactType}
       >
 
-        <div key={0} style={{backgroundColor: "white"}}>
-          <Container title="Substitutions"> </Container>
+        <div key={0} style={{backgroundColor: "white", overflowY: 'auto'}}>
+          <Container title="Substitutions"></Container>
+          {
+            this.state.refreshMode && 
+            <div className={classes.subLoader}>
+              <ReactLoading type={'spinningBubbles'} color={'black'} height={'30%'} width={'30%'} />
+            </div>
+          }
           <SubstitutionContainer/>
+         
         </div>
         <div key={1} style={{backgroundColor: "white"}}>
           <Container title="Scoreboard"></Container>
-        <ScoreBoardContainer/>
+          {
+            this.state.refreshMode && 
+            <div className={classes.scoreLoader}>
+              <ReactLoading type={'spinningBubbles'} color={'black'} height={'8%'} width={'8%'} />
+            </div>
+          }
+          <ScoreBoardContainer/>
          
         </div>  
-        <div key={2} style={{backgroundColor: "white"}}>
+        <div key={2} style={{backgroundColor: "white", overflowY: 'auto'}}>
           <Container title="Lineup"></Container>
-          {/* <LineupContainer/>  */}
+
+          {
+            this.state.refreshMode && 
+            <div className={classes.lineupLoader}>
+              <ReactLoading type={'spinningBubbles'} color={'black'} height={'20%'} width={'20%'} />
+            </div>
+          }
+
+          <LineupContainer/> 
         </div>
         <div key={3} style={{backgroundColor: "white"}}>
         <Container title="Game Stats"></Container>
-        <GameStats/>
+          {
+            this.state.refreshMode && 
+            <div className={classes.gameStatsLoader}>
+              <ReactLoading type={'spinningBubbles'} color={'black'} height={'20%'} width={'20%'} />
+            </div>
+          }
+          <GameStatsContainer/>
+        
         </div>
-        <div key={4} style={{backgroundColor: "#45bc67", overflowY: 'auto'}}>
+    
+        <div key={4} style={this.getTimelineStyle()}>
           <Container title="Timeline"></Container>
-          <TimelineContainer style={{overflowY: 'auto'}}/>
+          {
+            this.state.refreshMode && 
+            <div className={classes.subLoader}>
+              <ReactLoading type={'spinningBubbles'} color={'black'} height={'30%'} width={'30%'} />
+            </div>
+          }
+          <TimelineContainer style={this.getTimelineStyle()}/>
         </div>
 
       </ResponsiveReactGridLayout>
@@ -240,8 +329,8 @@ class Dashboard extends React.Component {
 function generateDefaultLayout() {
   var subContainer = {x: 7, y: 0, w: 3, h: 19, i: "0"};
   var scoreContainer = {x: 3, y: 0, w: 4, h: 4, i: "1"};
-  var lineUpContainer = {x: 3, y: 4, w: 4, h: 9, i: "2"};
-  var gameStatsContainer = {x: 3, y: 13, w: 4, h: 6, i: "3"};
+  var lineUpContainer = {x: 3, y: 4, w: 4, h: 8, i: "2"};
+  var gameStatsContainer = {x: 3, y: 12, w: 4, h: 7, i: "3"};
   var timelineContainer = {x: 0, y: 0, w: 3, h: 19, i: "4"};
 
   var originalContainerConfig = [ subContainer, scoreContainer, lineUpContainer, gameStatsContainer, timelineContainer]; 
