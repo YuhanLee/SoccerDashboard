@@ -17,6 +17,7 @@ import ScoreBoardContainer from './ScoreBoardContainer';
 import TimelineContainer from "./TimelineContainer";
 import GameStatsContainer from "./GameStatsContainer";
 import ReactLoading from 'react-loading';
+import Button from '@material-ui/core/Button';
 
 
 library.add(faPencilAlt, faQuestionCircle, faSync, faSave)
@@ -32,6 +33,15 @@ const EditSaveIcon = ({ editMode, onClick }) => {
 };
 
 const styles = theme => ({
+  header: {
+    alignContent: 'center', 
+    paddingTop: '20px', 
+    paddingBottom: '20px',  
+    backgroundColor: '#282c34', 
+    textAlign: 'center',  
+    justifyContent: 'center', 
+    display: 'flex', 
+  }, 
   button: {
     margin: (theme.spacing.unit)/2,
   },
@@ -42,7 +52,7 @@ const styles = theme => ({
 
   actionBarStyle: {
     display: 'flex', 
-    padding: 20, 
+    padding: 15, 
     backgroundColor: 'white', 
     justifyContent: 'space-between',
     color: 'black', 
@@ -78,7 +88,7 @@ const styles = theme => ({
     alignContent: 'center', 
     textAlign: 'center'
   }, 
-  
+
   gridStyle: {
     padding: 20, 
     margin: 30, 
@@ -182,11 +192,15 @@ class Dashboard extends React.Component {
     const { classes } = this.props;
     return (
       <div>
-      <div class="container dashboard-title">
-        <h1>World Cup 2018: Match Dashboard</h1>
+      <div className={classes.header}>
+        <h1>World Cup 2018: Match Dashboard</h1> 
+        {/* TODO: make this header text align center?  There is some issue with the CSS I added*/}
+        {/* TODO: Check UI friendly on different sizes of screen  */}
+
+        <Button style={{color: 'white', marginLeft: '1200px', backgroundColor: '#45bc67'}}>Log in </Button>
+
       </div>
       <div className={classes.background}>
-      
         <div className={classes.actionBarStyle}>
           <div className={classes.selectionInputs}>
             <form className={classes.root} autoComplete="off">
