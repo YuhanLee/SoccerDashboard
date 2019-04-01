@@ -119,7 +119,7 @@ const styles = theme => ({
 
   lineupLoader: {
     padding: '60px', 
-    paddingTop: '300px', 
+    paddingTop: '60px', 
     paddingBottom: '100px', 
     display:'flex', 
     flex: 1,
