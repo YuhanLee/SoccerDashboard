@@ -9,7 +9,14 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-
+import Avatar from '@material-ui/core/Avatar';
+import teamIcon from '../../src/icons/soccer_icons/png/005-soccer-game-1.png'
+import shotsIcon from '../../src/icons/soccer_icons/png/037-soccer-ball.png'; 
+import shotsAccuracyIcon from '../../src/icons/soccer_icons/png/011-soccer.png'; 
+import passesIcon from '../../src/icons/soccer_icons/png/017-soccer-player-1.png'; 
+import cornerIcon from '../../src/icons/soccer_icons/png/036-corner.png'; 
+import yellowCardIcon from '../../src/icons/soccer_icons/png/049-yellow-card.png'; 
+import redCardIcon from '../../src/icons/soccer_icons/png/048-red-card.png'; 
 
 const CustomTableCell = withStyles(theme => ({
   head: {
@@ -43,90 +50,49 @@ const styles = theme => ({
 });
 
 let id = 0;
-function createData(stats) {
+function createData(team, shots, shotsAccuracy, passes, corners, yellowCard, redCard) {
   id += 1;
-  return {stats};
+  return { id, team, shots, shotsAccuracy, passes, corners, yellowCard, redCard };
 }
-
-const myStats = [
-  createData("Shots(on Target)"),
-  createData("ShotsAccuracy"),
-  createData("Passes"),
-  createData("Corners"),
-  createData("Yellow Card"),
-  createData("Red Card"),
-];
-
-const hometeamStats = [
-  createData("8(6)"),
-  createData("75%"),
-  createData("289"),
-  createData("8"),
-  createData("2"),
-  createData("0"),
-];
-
-const awayteamStats = [
-  createData("14(4)"),
-  createData("28.6%"),
-  createData("528"),
-  createData("5"),
-  createData("1"),
-  createData("0"),
+const rows = [
+  createData("Home", '8(6)', '75%', '289', '8', '2', '0'),
+  createData("Away", '14(4)', '28.6%', '528', '5', '11', '1', '0'),
 ];
 
  class GameStatsContainer extends React.Component {
 
   render() {
     const { classes } = this.props;
-
-    return(
+    return (
       <Paper className={classes.root}>
         <Table className={classes.table}>
-            <TableHead>
-              <TableRow> 
-
-              <CustomTableCell className={classes.head}>
-                <h3>        </h3>
-              </CustomTableCell>
-              </TableRow>
-            </TableHead>
+          <TableHead>
+            <TableRow>
+              <CustomTableCell align="center"><Avatar src={teamIcon}></Avatar><h3>Teams</h3></CustomTableCell>
+              <CustomTableCell align="center"><Avatar src={shotsIcon}></Avatar><h3>Shots</h3></CustomTableCell>
+              <CustomTableCell align="center"><Avatar src={shotsAccuracyIcon}></Avatar><h3>Shot Accuracy</h3></CustomTableCell>
+              <CustomTableCell align="center"><Avatar src={passesIcon}></Avatar><h3>Passes</h3></CustomTableCell>
+              <CustomTableCell align="center"><Avatar src={cornerIcon}></Avatar><h3>Corners</h3></CustomTableCell>
+              <CustomTableCell align="center"><Avatar src={yellowCardIcon}></Avatar><h3>Yellow Card</h3></CustomTableCell>
+              <CustomTableCell align="center"><Avatar src={redCardIcon}></Avatar><h3>Red Card</h3></CustomTableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
             {
-              myStats.map(column =>(
-                <TableCell key={column.id}>
-                  <CustomTableCell align="center">{column.stats}</CustomTableCell>
-                </TableCell>
-              ))
-            }
-          <TableRow>     {/* 2nd row  */}
-            <TableHead>
-              <CustomTableCell className={classes.head}>
-                <h3>HomeTeam</h3>
-              </CustomTableCell>
-            </TableHead> 
-            {
-              hometeamStats.map(column =>(
-                <TableCell key={column.id}>
-                  <CustomTableCell>{column.stats}</CustomTableCell>
-                </TableCell>
-              ))
-            }
-          </TableRow>
-          <TableRow>   {/* 3rd row  */}
-            <TableHead>
-                <CustomTableCell className={classes.head}>
-                  <h3>AwayTeam</h3>
+              rows.map(row => (
+              <TableRow className={classes.row} key={row.id}>
+                <CustomTableCell component="th" scope="row">
+                  <h4>{row.team}</h4>
                 </CustomTableCell>
-              </TableHead>
-              {
-                awayteamStats.map(column =>(
-                  <TableCell key={column.id}>
-                    <CustomTableCell align="center">{column.stats}</CustomTableCell>
-                  </TableCell>
-              ))
-            }
-          </TableRow>
-        
+                <CustomTableCell align="center"><h4>{row.shots}</h4></CustomTableCell>
+                <CustomTableCell align="center"><h4>{row.shotsAccuracy}</h4></CustomTableCell>
+                <CustomTableCell align="center"><h4>{row.passes}</h4></CustomTableCell>
+                <CustomTableCell align="center"><h4>{row.corners}</h4></CustomTableCell>
+                <CustomTableCell align="center"><h4>{row.yellowCard}</h4></CustomTableCell>
+                <CustomTableCell align="center"><h4>{row.redCard}</h4></CustomTableCell>
+              </TableRow>
+            ))}
+          </TableBody>
         </Table>
       </Paper>
     );

@@ -44,13 +44,14 @@ const styles = theme => ({
     display: 'flex', 
     padding: 20, 
     backgroundColor: 'white', 
-    justifyContent: 'space-between', 
+    justifyContent: 'space-between',
     color: 'black', 
   }, 
 
   selectBox: {
     minWidth: 200, 
-    paddingTop: 20
+    paddingTop: 20, 
+    textAlign: 'left', 
     // display: 'inline-block',
   },
 
@@ -71,6 +72,13 @@ const styles = theme => ({
     minWidth: 200, 
   },
 
+  background: {
+    color: 'black', 
+    backgroundColor: '#eee', 
+    alignContent: 'center', 
+    textAlign: 'center'
+  }, 
+  
   gridStyle: {
     padding: 20, 
     margin: 30, 
@@ -82,7 +90,7 @@ const styles = theme => ({
 
   subLoader: {
     padding: '20px', 
-    paddingTop: '250px', 
+    paddingTop: '1000px', 
     paddingBottom: '300px', 
     display:'flex', 
     flex: 1,
@@ -101,6 +109,7 @@ const styles = theme => ({
 
   lineupLoader: {
     padding: '60px', 
+    paddingTop: '300px', 
     paddingBottom: '100px', 
     display:'flex', 
     flex: 1,
@@ -172,7 +181,12 @@ class Dashboard extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <div className={classes.gridStyle}>
+      <div>
+      <div class="container dashboard-title">
+        <h1>World Cup 2018: Match Dashboard</h1>
+      </div>
+      <div className={classes.background}>
+      
         <div className={classes.actionBarStyle}>
           <div className={classes.selectionInputs}>
             <form className={classes.root} autoComplete="off">
@@ -180,16 +194,19 @@ class Dashboard extends React.Component {
                 <InputLabel style={{paddingBottom: '10'}} htmlFor="stage-simple"><h4>Select A Stage</h4></InputLabel>
                 <Select
                   className={classes.selectBox}
-                  value="tmp"
+                  value="60"
                   onChange={this.handleChange}
                   inputProps={{
                     name: "stage",
                     id: "stage-simple"
                   }}
                 >
-                  <MenuItem value={10}>Ten</MenuItem>
-                  <MenuItem value={20}>Twenty</MenuItem>
-                  <MenuItem value={30}>Thirty</MenuItem>
+                  <MenuItem value={10}><h4>Group</h4></MenuItem>
+                  <MenuItem value={20}><h4>Round of 16</h4></MenuItem>
+                  <MenuItem value={30}><h4>Quarter Finals</h4></MenuItem>
+                  <MenuItem value={40}><h4>Semi Finals</h4></MenuItem>
+                  <MenuItem value={50}><h4>Third Place Playoff</h4></MenuItem>
+                  <MenuItem value={60}><h4>Final</h4></MenuItem>
                 </Select>
               </FormControl>
 
@@ -197,16 +214,14 @@ class Dashboard extends React.Component {
                 <InputLabel htmlFor="stage-simple"><h4>Select Stage Details</h4></InputLabel>
                 <Select
                   className={classes.selectBox}
-                  value="tmp"
+                  value="10"
                   onChange={this.handleChange}
                   inputProps={{
                     name: "details",
                     id: "details-simple"
                   }}
                 >
-                  <MenuItem value={10}>Ten</MenuItem>
-                  <MenuItem value={20}>Twenty</MenuItem>
-                  <MenuItem value={30}>Thirty</MenuItem>
+                  <MenuItem value={10}><h4>Final</h4></MenuItem>
                 </Select>
               </FormControl>
 
@@ -214,16 +229,14 @@ class Dashboard extends React.Component {
                 <InputLabel className={classes.inputLabel} htmlFor="stage-simple"><h4>Select A Game</h4></InputLabel>
                 <Select
                   className={classes.selectBox}
-                  value="tmp"
+                  value="10"
                   onChange={this.handleChange}
                   inputProps={{
                     name: "game",
                     id: "game-simple"
                   }}
                 >
-                  <MenuItem value={10}>Ten</MenuItem>
-                  <MenuItem value={20}>Twenty</MenuItem>
-                  <MenuItem value={30}>Thirty</MenuItem>
+                  <MenuItem value={10}><h4>France vs. Croatia</h4></MenuItem>
                 </Select>
               </FormControl>    
             </form> 
@@ -321,6 +334,7 @@ class Dashboard extends React.Component {
       </ResponsiveReactGridLayout>
 
       </div>
+    </div>
     );
   }
 }

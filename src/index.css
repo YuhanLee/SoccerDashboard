@@ -6,7 +6,6 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #282c34;
   color: white; 
    font-family: "Josefin Sans", Helvetica, sans-serif;
 }
@@ -21,5 +20,8 @@ h1, h2, h3, h4, h5, button, a {
 }
 
 .dashboard-title {
+  padding-top: 20px;
+  padding-bottom: 20px; 
+  background-color: #282c34;
   text-align: center; 
 }

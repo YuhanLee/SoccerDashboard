@@ -3,7 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import React from "react";
 import { Timeline } from 'react-material-timeline';
 import { Avatar, Icon } from '@material-ui/core';
-import goalIcon from '../../src/icons/soccer_icons/png/011-soccer.png'; 
+import goalIcon from '../../src/icons/soccer_icons/png/037-soccer-ball.png'; 
 import yellowCardIcon from '../../src/icons/soccer_icons/png/049-yellow-card.png'; 
 import subIcon from '../../src/icons/soccer_icons/png/027-substitute-player.png'; 
 
