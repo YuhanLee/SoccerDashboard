@@ -2,6 +2,7 @@ import React from "react";
 import { withStyles } from '@material-ui/core/styles';
 import { Responsive, WidthProvider } from "react-grid-layout";
 import Container from "./Container"; 
+import Modal from '@material-ui/core/Modal';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -218,9 +219,8 @@ class Dashboard extends React.Component {
          
           {/* TODO: make this header text align center?  There is some issue with the CSS I added*/}
           {/* TODO: Check UI friendly on different sizes of screen  */}
-
-         
         </div>
+        
         <div className={classes.background}>
           <div className={classes.actionBarStyle}>
             <div className={classes.selectionInputs}>
