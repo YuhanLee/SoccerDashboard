@@ -6,6 +6,8 @@ import 'react-grid-layout/css/styles.css'
 import 'react-resizable/css/styles.css' 
 import Dashboard from './components/Dashboard';
 import LandingPage from './components/LandingPage'; 
+import SelectGames from './components/SelectGames'; 
+
 
 class App extends Component {
   render() {
@@ -13,7 +15,7 @@ class App extends Component {
       <div>
         <Switch>
           {/* <Route exact path='/' component={Dashboard}/> */}
-          <Route exact path='/' component={LandingPage}/>
+          <Route exact path='/' component={SelectGames}/>
         </Switch>
       </div>
     )
