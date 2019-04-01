@@ -21,8 +21,6 @@ class SelectGames extends React.Component {
     return (
       <div className={classes.background}>
         <h1 style={{marginTop: '0px'}}> customize your dashboard </h1>
-
-      
       </div>
     ); 
   }

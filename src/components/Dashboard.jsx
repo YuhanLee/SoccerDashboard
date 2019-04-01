@@ -2,7 +2,6 @@ import React from "react";
 import { withStyles } from '@material-ui/core/styles';
 import { Responsive, WidthProvider } from "react-grid-layout";
 import Container from "./Container"; 
-import Modal from '@material-ui/core/Modal';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -215,7 +214,7 @@ class Dashboard extends React.Component {
         <div className={classes.header}>
           <div className={classes.div}></div>
           <div><h1 style={{marginLeft: '600px'}}>World Cup 2018: Match Dashboard</h1></div>
-          <div> <Button className={classes.logInButton}> <h4>Log in</h4></Button></div>
+          <div><Button className={classes.logInButton}> <h4>Log in</h4></Button></div>
          
           {/* TODO: make this header text align center?  There is some issue with the CSS I added*/}
           {/* TODO: Check UI friendly on different sizes of screen  */}
