@@ -15,6 +15,7 @@ import SubstitutionContainer  from './SubstitutionContainer';
 import LineupContainer from './LineupContainer'; 
 import ScoreBoardContainer from './ScoreBoardContainer'; 
 import TimelineContainer from "./TimelineContainer";
+import GameStats from "./GameStats";
 
 library.add(faPencilAlt, faQuestionCircle, faSync, faSave)
 
@@ -221,6 +222,7 @@ class Dashboard extends React.Component {
         </div>
         <div key={3} style={{backgroundColor: "white"}}>
         <Container title="Game Stats"></Container>
+        <GameStats/>
         </div>
         <div key={4} style={{backgroundColor: "#45bc67", overflowY: 'auto'}}>
           <Container title="Timeline"></Container>
