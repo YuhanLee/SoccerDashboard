@@ -58,8 +58,8 @@ const styles = theme => ({
 
   signInContent: {
     display: 'flex',
-    color: 'black', 
     justifyContent: 'center',
+    color: 'black', 
   }, 
 
   textFields: {
@@ -81,8 +81,11 @@ class LandingPage extends React.Component {
         <div  className={classes.textContent}>
           <h1 style={{fontSize: '50px', marginTop: '0px'}}> Customize Your Soccer Dashboard </h1>
         </div>
+        <h2 style={{fontSize: '30px', display: 'flex', justifyContent: 'center', marginTop: '0px' }}> Start Tracking your favourite games</h2>
+
 
         <div className={classes.mainContent}>
+        
           <Paper align="center" className={classes.root}>
             <div className={classes.textFields}>
               <TextField
