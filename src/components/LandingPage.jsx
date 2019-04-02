@@ -4,6 +4,8 @@ import Paper from "@material-ui/core/Paper";
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
+import { Route, withRouter } from 'react-router-dom'; 
+
 const styles = theme => ({
   root: {
     width: "60%",
@@ -72,36 +74,12 @@ const styles = theme => ({
 
 
 class LandingPage extends React.Component {
-  
-  state = {
-    user: {
-        password: '',
-        email: '',
-    },
-};
+  onSignUpClick = () => {
+    console.log("clicked"); 
 
-componentDidMount() {
-    // custom rule will have name 'isPasswordMatch'
-    ValidatorForm.addValidationRule('isPasswordMatch', (value) => {
-        if (value !== this.state.user.password) {
-            return false;
-        }
-        return true;
-    });
-}
-
-handleChange = (event) => {
-    const { user } = this.state;
-    user[event.target.name] = event.target.value;
-    this.setState({ user });
-}
-handleSubmit = () => {
-  // your submit logic
-}
+  }; 
   render() {
     const { classes } = this.props;
-    const {user} = this.state;
-
     return (
       <div className={classes.background}>
         <div  className={classes.textContent}>
@@ -125,7 +103,6 @@ handleSubmit = () => {
                 name="email"
                 autoComplete="email"
                 margin="normal"
-                value={user.email}
                 validators={['required!']}
                 errorMessages={['this field is required']}
               />
@@ -141,12 +118,10 @@ handleSubmit = () => {
               onChange={this.handleChange}
               validators={['required']}
               errorMessages={['this field is required']}
-              value={user.password}
             />
             
             <div className={classes.buttonContent}>
-            
-              <Button className={classes.signUpButton}><h3 style={{marginTop: '5px', marginBottom: '5px',}}>Sign Up</h3></Button>
+              <Button className={classes.signUpButton} onClick={() => this.props.history.push('selectGames')}><h3 style={{marginTop: '5px', marginBottom: '5px',}}>Sign Up</h3></Button>
             </div>
             <div style={{color: 'black'}}>
               TODO: 
@@ -167,5 +142,4 @@ handleSubmit = () => {
 
 }
 
-
-export default withStyles(styles)(LandingPage)
+export default withRouter(LandingPage) && withStyles(styles)(LandingPage)
