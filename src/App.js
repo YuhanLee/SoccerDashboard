@@ -16,6 +16,7 @@ class App extends Component {
         <Switch>
           {/* <Route exact path='/' component={Dashboard}/> */}
           <Route exact path='/' component={LandingPage}/>
+          {/* <Route exact path='/' component={SelectGames}/> */}
         </Switch>
       </div>
     )
