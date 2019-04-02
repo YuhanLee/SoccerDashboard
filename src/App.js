@@ -7,6 +7,7 @@ import 'react-resizable/css/styles.css'
 import Dashboard from './components/Dashboard';
 import LandingPage from './components/LandingPage'; 
 import SelectGames from './components/SelectGames'; 
+import SearchGames from './components/SearchGames'; 
 
 
 class App extends Component {
@@ -14,9 +15,9 @@ class App extends Component {
     const App = () => (
       <div>
         <Switch>
-          {/* <Route exact path='/' component={Dashboard}/> */}
           <Route exact path='/' component={LandingPage}/>
-          {/* <Route exact path='/' component={SelectGames}/> */}
+          <Route exact path='/dashboard' component={Dashboard}/>
+          <Route exact path='/selectGames' component={SelectGames}/>
         </Switch>
       </div>
     )

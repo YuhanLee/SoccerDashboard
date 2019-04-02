@@ -4,6 +4,7 @@ import Paper from "@material-ui/core/Paper";
 import Select from 'react-select';
 import Button from '@material-ui/core/Button';
 import color from "@material-ui/core/colors/purple";
+import { Route, withRouter } from 'react-router-dom'; 
 
 
 const styles = theme => ({
@@ -102,7 +103,7 @@ class SelectGames extends React.Component {
             </div>
 
             <div className={classes.gobutton}>
-            <Button className={classes.signUpButton} onClick={this.goClick}><h3 style={{marginTop: '5px', marginBottom: '5px'}}>Go</h3></Button>
+            <Button className={classes.signUpButton} onClick={() => this.props.history.push('dashboard')}><h3 style={{marginTop: '5px', marginBottom: '5px'}}>Go</h3></Button>
             </div>
           </Paper>
         </div>
@@ -114,4 +115,4 @@ class SelectGames extends React.Component {
 }
 
 
-export default withStyles(styles)(SelectGames)
+export default withRouter(SelectGames) && withStyles(styles)(SelectGames)
