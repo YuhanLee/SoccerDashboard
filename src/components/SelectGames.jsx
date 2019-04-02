@@ -40,13 +40,27 @@ const styles = theme => ({
     textAlign: 'left', 
   }, 
 
+  buttoncontent: {
+    display: 'flex',
+    alignItems: 'center',
+    paddingTop: '20px', 
+    justifyContent: 'center',
+    textAlign: 'left', 
+  }, 
+
   gobutton: {
-    width: '100%', 
+    width: '16%', 
     height: '70%', 
-    color: 'white',  
+    color: 'white', 
+    backgroundColor: '#FF6B6B', 
     textAlign: 'center', 
-    alignContent: 'center', 
+    alignContent: 'center',
+
+    "&:hover": {
+      background: "#ff9a9a"
+    },
   },
+
 
 
 })
@@ -92,17 +106,17 @@ class SelectGames extends React.Component {
         
         <div className={classes.contents}>
           <Paper className={classes.root}>
-            <p style={{color:'black'}}> Please Select the Region </p>
+            <h2 style={{color:'black'}}> Please Select the Region </h2>
             <div className={classes.RegionSelect}  style={{color:'black'}}>
               <Select options={selectRegion}/>
             </div>
-            <p style={{color:'black'}}> Please Select the League </p>
+            <h2 style={{color:'black'}}> Please Select the League </h2>
             <div className={classes.GameSelect} style={{marginBottom:'10px', color:'black'}}>
               <Select options={selectevent}/>
             </div>
 
-            <div className={classes.gobutton}>
-            <Button className={classes.signUpButton} onClick={this.goClick}><h3 style={{marginTop: '5px', marginBottom: '5px'}}>Go</h3></Button>
+            <div className={classes.buttoncontent}>
+            <Button className={classes.gobutton} onClick={this.goClick}><h3 style={{marginTop: '5px', marginBottom: '5px'}}>Go</h3></Button>
             </div>
           </Paper>
         </div>
