@@ -15,15 +15,9 @@ class App extends Component {
     const App = () => (
       <div>
         <Switch>
-<<<<<<< HEAD
-          {/* <Route exact path='/' component={Dashboard}/> */}
-          {/* <Route exact path='/' component={LandingPage}/> */}
-          <Route exact path='/' component={SelectGames}/>
-=======
           <Route exact path='/' component={LandingPage}/>
           <Route exact path='/dashboard' component={Dashboard}/>
           <Route exact path='/selectGames' component={SelectGames}/>
->>>>>>> 4b8f6636942b94d933d1968ff715b50ebfc9e818
         </Switch>
       </div>
     )

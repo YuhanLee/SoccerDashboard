@@ -18,8 +18,8 @@ const styles = theme => ({
   }, 
 
   root:{
-    width: "70%",
-    padding: '40px',
+    width: "60%",
+    padding: '30px',
     marginTop: '5px',
   },
 
@@ -100,9 +100,9 @@ class SelectGames extends React.Component {
       <div className={classes.background}>
        
        <div  className={classes.textContent}>
-          <h1 style={{fontSize: '50px', marginTop: '0px'}}> Customize Your Soccer Dashboard </h1>
+          <h1 style={{fontSize: '50px', marginTop: '0px'}}> WorldWide football events are here for you to explore </h1>
         </div>
-        <h2 style={{fontSize: '30px', display: 'flex', justifyContent: 'center', marginTop: '0px' }}> Start Tracking your favourite games</h2>
+        <h2 style={{fontSize: '30px', display: 'flex', justifyContent: 'center', marginTop: '0px' }}> select the desire game you want below</h2>
         
         
         <div className={classes.contents}>
@@ -116,13 +116,9 @@ class SelectGames extends React.Component {
               <Select options={selectevent}/>
             </div>
 
-<<<<<<< HEAD
             <div className={classes.buttoncontent}>
-            <Button className={classes.gobutton} onClick={this.goClick}><h3 style={{marginTop: '5px', marginBottom: '5px'}}>Go</h3></Button>
-=======
-            <div className={classes.gobutton}>
-            <Button className={classes.signUpButton} onClick={() => this.props.history.push('dashboard')}><h3 style={{marginTop: '5px', marginBottom: '5px'}}>Go</h3></Button>
->>>>>>> 4b8f6636942b94d933d1968ff715b50ebfc9e818
+            <Button className={classes.gobutton} onClick={() => this.props.history.push('dashboard')}><h3 style={{marginTop: '5px', marginBottom: '5px'}}>Go</h3></Button>
+
             </div>
           </Paper>
         </div>
