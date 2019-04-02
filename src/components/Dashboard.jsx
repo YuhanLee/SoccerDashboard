@@ -17,7 +17,7 @@ import TimelineContainer from "./TimelineContainer";
 import GameStatsContainer from "./GameStatsContainer";
 import ReactLoading from 'react-loading';
 import Button from '@material-ui/core/Button';
-
+import headerimage from '../../src/images/cheering.jpg';
 
 library.add(faPencilAlt, faQuestionCircle, faSync, faSave)
 
@@ -40,6 +40,8 @@ const styles = theme => ({
     textAlign: 'center',  
     justifyContent: 'center', 
     display: 'flex', 
+    backgroundImage: 'url('+ headerimage +')',
+    backgroundSize: 'cover',
   }, 
 
   div: {

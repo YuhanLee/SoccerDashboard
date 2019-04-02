@@ -5,12 +5,13 @@ import Select from 'react-select';
 import Button from '@material-ui/core/Button';
 import color from "@material-ui/core/colors/purple";
 import { Route, withRouter } from 'react-router-dom'; 
-
+import backImage from '../../src/images/cheering.jpg';
 
 const styles = theme => ({
   background: {
-    backgroundColor: '#282c34', 
-    // backgroundImage: 'require(../../src/images/Field.jpg)',
+    // backgroundColor: '#282c34', 
+    backgroundImage: 'url('+ backImage +')',
+    backgroundSize: 'cover',
     height: '100vh',
     width: '100%', 
     minHeight: '100vh', 
@@ -102,7 +103,7 @@ class SelectGames extends React.Component {
        <div  className={classes.textContent}>
           <h1 style={{fontSize: '50px', marginTop: '0px'}}> WorldWide football events are here for you to explore </h1>
         </div>
-        <h2 style={{fontSize: '30px', display: 'flex', justifyContent: 'center', marginTop: '0px' }}> select the desire game you want below</h2>
+        <h2 style={{fontSize: '30px', display: 'flex', justifyContent: 'center', marginTop: '0px'}}> select the desire game you want below</h2>
         
         
         <div className={classes.contents}>
