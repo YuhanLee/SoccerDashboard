@@ -69,13 +69,13 @@ const rows = [
         <Table className={classes.table}>
           <TableHead>
             <TableRow>
-              <CustomTableCell className={classes.tableHead} align="center"><Avatar src={teamIcon}></Avatar><h3>Teams</h3></CustomTableCell>
-              <CustomTableCell className={classes.tableHead} align="center"><Avatar src={shotsIcon}></Avatar><h3>Shots</h3></CustomTableCell>
-              <CustomTableCell className={classes.tableHead} align="center"><Avatar src={shotsAccuracyIcon}></Avatar><h3>Shot Accuracy</h3></CustomTableCell>
-              <CustomTableCell className={classes.tableHead} align="center"><Avatar src={passesIcon}></Avatar><h3>Passes</h3></CustomTableCell>
-              <CustomTableCell className={classes.tableHead} align="center"><Avatar src={cornerIcon}></Avatar><h3>Corners</h3></CustomTableCell>
-              <CustomTableCell className={classes.tableHead} align="center"><Avatar src={yellowCardIcon}></Avatar><h3>Yellow Card</h3></CustomTableCell>
-              <CustomTableCell className={classes.tableHead} align="center"><Avatar src={redCardIcon}></Avatar><h3>Red Card</h3></CustomTableCell>
+              <CustomTableCell className={classes.tableHead} align="center"><Avatar src={teamIcon}></Avatar><h2>Teams</h2></CustomTableCell>
+              <CustomTableCell className={classes.tableHead} align="center"><Avatar src={shotsIcon}></Avatar><h2>Shots</h2></CustomTableCell>
+              <CustomTableCell className={classes.tableHead} align="center"><Avatar src={shotsAccuracyIcon}></Avatar><h2>Accuracy</h2></CustomTableCell>
+              <CustomTableCell className={classes.tableHead} align="center"><Avatar src={passesIcon}></Avatar><h2>Passes</h2></CustomTableCell>
+              <CustomTableCell className={classes.tableHead} align="center"><Avatar src={cornerIcon}></Avatar><h2>Corners</h2></CustomTableCell>
+              <CustomTableCell className={classes.tableHead} align="center"><Avatar src={yellowCardIcon}></Avatar><h2>Yellow Card</h2></CustomTableCell>
+              <CustomTableCell className={classes.tableHead} align="center"><Avatar src={redCardIcon}></Avatar><h2>Red Card</h2></CustomTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -83,14 +83,14 @@ const rows = [
               rows.map(row => (
               <TableRow className={classes.row} key={row.id}>
                 <CustomTableCell component="th" scope="row">
-                  <h4>{row.team}</h4>
+                  <h2>{row.team}</h2>
                 </CustomTableCell>
-                <CustomTableCell align="center"><h4>{row.shots}</h4></CustomTableCell>
-                <CustomTableCell align="center"><h4>{row.shotsAccuracy}</h4></CustomTableCell>
-                <CustomTableCell align="center"><h4>{row.passes}</h4></CustomTableCell>
-                <CustomTableCell align="center"><h4>{row.corners}</h4></CustomTableCell>
-                <CustomTableCell align="center"><h4>{row.yellowCard}</h4></CustomTableCell>
-                <CustomTableCell align="center"><h4>{row.redCard}</h4></CustomTableCell>
+                <CustomTableCell align="center"><h2>{row.shots}</h2></CustomTableCell>
+                <CustomTableCell align="center"><h2>{row.shotsAccuracy}</h2></CustomTableCell>
+                <CustomTableCell align="center"><h2>{row.passes}</h2></CustomTableCell>
+                <CustomTableCell align="center"><h2>{row.corners}</h2></CustomTableCell>
+                <CustomTableCell align="center"><h2>{row.yellowCard}</h2></CustomTableCell>
+                <CustomTableCell align="center"><h2>{row.redCard}</h2></CustomTableCell>
               </TableRow>
             ))}
           </TableBody>

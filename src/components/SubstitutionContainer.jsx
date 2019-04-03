@@ -73,13 +73,13 @@ class SubstitutionContainer extends React.Component {
               <CustomTableCell style={{backgroundColor: '#282c34'}} align="center">
                 <Grid container justify="center" alignItems="center" direction="row">
                   <Avatar className={classes.avatar} src={franceFlag} alt="france"/>
-                  <h3>France</h3>
+                  <h2>France</h2>
                 </Grid>
               </CustomTableCell>
               <CustomTableCell style={{backgroundColor: '#282c34'}} align="center">
                 <Grid container justify="center" alignItems="center" direction="row">
                   <Avatar className={classes.avatar} src={croatiaFlag} alt="croatia"/>
-                  <h3>Croatia</h3>
+                  <h2>Croatia</h2>
                 </Grid>
               </CustomTableCell>
             </TableRow>
@@ -88,8 +88,8 @@ class SubstitutionContainer extends React.Component {
             sub.map(row => (
             <TableBody>
               <TableRow key={row.id} className={classes.row} >
-                <CustomTableCell align="center"><h4>{row.franceName}</h4></CustomTableCell>
-                <CustomTableCell align="center"><h4>{row.croatiaName}</h4></CustomTableCell>
+                <CustomTableCell align="center"><h3>{row.franceName}</h3></CustomTableCell>
+                <CustomTableCell align="center"><h3>{row.croatiaName}</h3></CustomTableCell>
               </TableRow>
             </TableBody>            
             ))

@@ -103,16 +103,16 @@ class SelectGames extends React.Component {
        <div  className={classes.textContent}>
           <h1 style={{fontSize: '50px', marginTop: '0px'}}> WorldWide football events are here for you to explore </h1>
         </div>
-        <h2 style={{fontSize: '30px', display: 'flex', justifyContent: 'center', marginTop: '0px'}}> select the desire game you want below</h2>
+        <h2 style={{fontSize: '30px', display: 'flex', justifyContent: 'center', marginTop: '0px' }}> Select a region and league you want to track</h2>
         
         
         <div className={classes.contents}>
           <Paper className={classes.root}>
-            <h2 style={{color:'black'}}> Please Select the Region </h2>
+            <h3 style={{color:'black'}}> Please Select the Region </h3>
             <div className={classes.RegionSelect}  style={{color:'black'}}>
               <Select options={selectRegion}/>
             </div>
-            <h2 style={{color:'black'}}> Please Select the League </h2>
+            <h3 style={{color:'black'}}> Please Select the League </h3>
             <div className={classes.GameSelect} style={{marginBottom:'10px', color:'black'}}>
               <Select options={selectevent}/>
             </div>

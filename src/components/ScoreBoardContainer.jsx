@@ -42,16 +42,16 @@ class ScoreBoardContainer extends React.Component{
         <Grid className={classes.gridStyle}>
           <Grid container justify="center" alignItems="center" direction="row" padding-top = "10">
             <Avatar className={classes.avatar} alt="Fr" src={franceFlag}/>
-            <h3 className={classes.hometeam}>France</h3>
+            <h2 className={classes.hometeam}>France</h2>
           </Grid>
  
           <Grid className={classes.gridStyle}>
-            <Typography container><h2>4 : 2</h2></Typography>
+            <Typography container><h1>4 : 2</h1></Typography>
           </Grid>
               
           <Grid container justify="center" alignItems="center" direction="row">
             <Avatar className={classes.avatar} alt="Cr" src={croatiaFlag}/>
-            <h3 className={classes.awayteam}>Croatia </h3>
+            <h2 className={classes.awayteam}>Croatia </h2>
           </Grid>
         </Grid>
         </div>

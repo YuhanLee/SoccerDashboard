@@ -74,12 +74,40 @@ const styles = theme => ({
 
 
 class LandingPage extends React.Component {
+
+  state = {
+    user: {
+        password: '',
+        email: '',
+    },
+};
+
+componentDidMount() {
+    // custom rule will have name 'isPasswordMatch'
+    ValidatorForm.addValidationRule('isPasswordMatch', (value) => {
+        if (value !== this.state.user.password) {
+            return false;
+        }
+        return true;
+    });
+}
+
+handleChange = (event) => {
+    const { user } = this.state;
+    user[event.target.name] = event.target.value;
+    this.setState({ user });
+}
+handleSubmit = () => {
+  // your submit logic
+}
+
   onSignUpClick = () => {
     console.log("clicked"); 
 
   }; 
   render() {
     const { classes } = this.props;
+    const {user} = this.state;
     return (
       <div className={classes.background}>
         <div  className={classes.textContent}>
@@ -94,7 +122,7 @@ class LandingPage extends React.Component {
           <ValidatorForm onSubmit={this.handleSubmit}>
             <div className={classes.textFields}>
               
-              <TextValidator
+            <TextValidator
                 id="filled-email-input"
                 label="Email"
                 onChange={this.handleChange}
@@ -103,6 +131,7 @@ class LandingPage extends React.Component {
                 name="email"
                 autoComplete="email"
                 margin="normal"
+                value={user.email}
                 validators={['required!']}
                 errorMessages={['this field is required']}
               />
@@ -118,16 +147,13 @@ class LandingPage extends React.Component {
               onChange={this.handleChange}
               validators={['required']}
               errorMessages={['this field is required']}
+              value={user.password}
             />
             
             <div className={classes.buttonContent}>
               <Button className={classes.signUpButton} onClick={() => this.props.history.push('selectGames')}><h3 style={{marginTop: '5px', marginBottom: '5px',}}>Sign Up</h3></Button>
             </div>
-            <div style={{color: 'black'}}>
-              TODO: 
-              1. Add basic validation on the method onSignUpClick()
-            </div>
-
+    
             <div className={classes.signInContent}>
               <h3>Already have an account? Sign in <a href="#" style={{color: '#006CBB'}}>here</a></h3>
             </div>

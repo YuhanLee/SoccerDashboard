@@ -33,13 +33,14 @@ class Container extends React.Component {
     return (
       <div className={classes.gridStyle}>
         <Grid
+        elevation = "10"
           container
           direction="row"
           justify="center"
           alignItems="center">
 
           <Paper className={classes.paper}>
-            <h3 className="row">{this.props.title}</h3>
+            <h2 className="row">{this.props.title}</h2>
           </Paper>
         </Grid>
       </div>

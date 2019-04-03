@@ -18,6 +18,9 @@ import GameStatsContainer from "./GameStatsContainer";
 import ReactLoading from 'react-loading';
 import Button from '@material-ui/core/Button';
 import headerimage from '../../src/images/cheering.jpg';
+import Modal from '@material-ui/core/Modal';
+import Paper from "@material-ui/core/Paper";
+import helpModal from '../../src/images/modal_help.png'; 
 
 library.add(faPencilAlt, faQuestionCircle, faSync, faSave)
 
@@ -52,7 +55,7 @@ const styles = theme => ({
 
   logInButton: {
     color: 'white', 
-    marginLeft: '620px',
+    marginLeft: '500px',
     marginTop: '20px', 
     paddingRight: '18px', 
     paddingLeft: '18px', 
@@ -142,7 +145,7 @@ const styles = theme => ({
 
   lineupLoader: {
     padding: '60px', 
-    paddingTop: '60px', 
+    paddingTop: '80px', 
     paddingBottom: '100px', 
     display:'flex', 
     flex: 1,
@@ -152,6 +155,7 @@ const styles = theme => ({
 
   gameStatsLoader: {
     padding: '40px', 
+    paddingTop: '45px', 
     paddingBottom: '200px', 
     display:'flex', 
     flex: 1,
@@ -159,6 +163,16 @@ const styles = theme => ({
     alignItems: 'center', 
     // overflowY: 'scroll', 
   },  
+  paper: {
+    width: "100%",
+    overflowX: "auto", 
+    backgroundColor: '#eee', 
+  }, 
+
+  helpModal: {
+    width: '100%', 
+    zIndex: 0,   
+  }
 });
 
 class Dashboard extends React.Component {
@@ -169,6 +183,7 @@ class Dashboard extends React.Component {
     initialLayout: generateDefaultLayout(), 
   };
   state = {
+    modalOpen: false, 
     currentBreakpoint: "sm",
     compactType: "vertical",
     mounted: false,
@@ -209,13 +224,31 @@ class Dashboard extends React.Component {
      }
   }
 
+  showHelpScreen = () => {
+    this.setState({modalOpen : !this.state.modalOpen})
+  }
+
+  handleClose = () => {
+    this.setState({modalOpen: false})
+  }
+
   render() {
     const { classes } = this.props;
     return (
       <div>
+        <Modal
+          aria-labelledby="simple-modal-title"
+          aria-describedby="simple-modal-description"
+          open={this.state.modalOpen}
+          onClose={this.handleClose}>
+
+            <img className={classes.helpModal} alt="helpModal" onClick={this.handleClose} src={helpModal}></img>
+        
+        </Modal>
+
         <div className={classes.header}>
           <div className={classes.div}></div>
-          <div><h1 style={{marginLeft: '600px'}}>World Cup 2018: Match Dashboard</h1></div>
+          <div><h1 style={{marginLeft: '600px', fontSize: '40px'}}>World Cup 2018: Match Dashboard</h1></div>
           <div><Button className={classes.logInButton}> <h4>Log in</h4></Button></div>
          
           {/* TODO: make this header text align center?  There is some issue with the CSS I added*/}
@@ -227,7 +260,7 @@ class Dashboard extends React.Component {
             <div className={classes.selectionInputs}>
               <form className={classes.root} autoComplete="off">
                 <FormControl className={classes.formControl}>
-                  <InputLabel style={{paddingBottom: '10'}} htmlFor="stage-simple"><h4>Select A Stage</h4></InputLabel>
+                  <InputLabel style={{paddingBottom: '10'}} htmlFor="stage-simple"><h3>Select A Stage</h3></InputLabel>
                   <Select
                     className={classes.selectBox}
                     value="60"
@@ -247,7 +280,7 @@ class Dashboard extends React.Component {
                 </FormControl>
 
                 <FormControl className={classes.formControl}>
-                  <InputLabel htmlFor="stage-simple"><h4>Select Stage Details</h4></InputLabel>
+                  <InputLabel htmlFor="stage-simple"><h3>Select Stage Details</h3></InputLabel>
                   <Select
                     className={classes.selectBox}
                     value="10"
@@ -262,7 +295,7 @@ class Dashboard extends React.Component {
                 </FormControl>
 
                 <FormControl className={classes.formControl}>
-                  <InputLabel className={classes.inputLabel} htmlFor="stage-simple"><h4>Select A Game</h4></InputLabel>
+                  <InputLabel className={classes.inputLabel} htmlFor="stage-simple"><h3>Select A Game</h3></InputLabel>
                   <Select
                     className={classes.selectBox}
                     value="10"
@@ -287,7 +320,7 @@ class Dashboard extends React.Component {
             <EditSaveIcon editMode={this.state.editMode} />
           </IconButton>
 
-          <IconButton className={classes.button} aria-label="Help">
+          <IconButton className={classes.button} onClick={this.showHelpScreen} aria-label="Help">
             <FontAwesomeIcon className={classes.icons} size="sm" icon="question-circle" />
           </IconButton>
           </div>
@@ -330,20 +363,21 @@ class Dashboard extends React.Component {
             <ScoreBoardContainer/>
           
           </div>  
-          <div key={2} style={{backgroundColor: "white", overflowY: 'auto'}}>
-            <Container title="Lineup"></Container>
 
+          <div key={2} style={{backgroundColor: "white", overflowY: 'auto'}}>
+          <Container title="Lineup"></Container>
             {
               this.state.refreshMode && 
               <div className={classes.lineupLoader}>
                 <ReactLoading type={'spinningBubbles'} color={'#282c34'} height={'20%'} width={'20%'} />
               </div>
             }
-
             <LineupContainer/> 
+
           </div>
           <div key={3} style={{backgroundColor: "white", overflowY: 'auto'}}>
-          <Container title="Game Stats"></Container>
+            <Container title="Game Stats"></Container>
+
             {
               this.state.refreshMode && 
               <div className={classes.gameStatsLoader}>
@@ -351,8 +385,8 @@ class Dashboard extends React.Component {
               </div>
             }
             <GameStatsContainer/>
-          
           </div>
+        
       
           <div key={4} style={this.getTimelineStyle()}>
             <Container title="Timeline"></Container>
@@ -375,11 +409,11 @@ class Dashboard extends React.Component {
 
 
 function generateDefaultLayout() {
-  var subContainer = {x: 7, y: 0, w: 3, h: 20, i: "0"};
-  var scoreContainer = {x: 3, y: 0, w: 4, h: 5, i: "1"};
-  var lineUpContainer = {x: 3, y: 4, w: 4, h: 8, i: "2"};
-  var gameStatsContainer = {x: 3, y: 12, w: 4, h: 7, i: "3"};
-  var timelineContainer = {x: 0, y: 0, w: 3, h: 20, i: "4"};
+  var subContainer = {x: 7, y: 0, w: 3, h: 21, i: "0"};
+  var scoreContainer = {x: 3, y: 0, w: 4, h: 4, i: "1"};
+  var gameStatsContainer = {x: 3, y: 12, w: 4, h: 9, i: "2"};
+  var lineUpContainer = {x: 3, y: 4, w: 4, h: 8, i: "3"};
+  var timelineContainer = {x: 0, y: 0, w: 3, h: 21, i: "4"};
 
   var originalContainerConfig = [ subContainer, scoreContainer, lineUpContainer, gameStatsContainer, timelineContainer]; 
   return originalContainerConfig; 
