@@ -22,6 +22,7 @@ const styles = theme => ({
     width: "60%",
     padding: '30px',
     marginTop: '5px',
+    borderRadius: '10px', 
   },
 
   textContent: {
@@ -101,7 +102,7 @@ class SelectGames extends React.Component {
       <div className={classes.background}>
        
        <div  className={classes.textContent}>
-          <h1 style={{fontSize: '50px', marginTop: '0px'}}> WorldWide football events are here for you to explore </h1>
+          <h1 style={{fontSize: '50px', marginTop: '0px'}}> Worldwide soccer events are here for you to explore </h1>
         </div>
         <h2 style={{fontSize: '30px', display: 'flex', justifyContent: 'center', marginTop: '0px' }}> Select a region and league you want to track</h2>
         

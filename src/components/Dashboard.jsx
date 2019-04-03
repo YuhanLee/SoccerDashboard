@@ -17,7 +17,6 @@ import TimelineContainer from "./TimelineContainer";
 import GameStatsContainer from "./GameStatsContainer";
 import ReactLoading from 'react-loading';
 import Button from '@material-ui/core/Button';
-import headerimage from '../../src/images/cheering.jpg';
 import Modal from '@material-ui/core/Modal';
 import Paper from "@material-ui/core/Paper";
 import helpModal from '../../src/images/modal_help.png'; 
@@ -43,7 +42,6 @@ const styles = theme => ({
     textAlign: 'center',  
     justifyContent: 'center', 
     display: 'flex', 
-    backgroundImage: 'url('+ headerimage +')',
     backgroundSize: 'cover',
   }, 
 
@@ -86,14 +84,16 @@ const styles = theme => ({
   }, 
 
   selectBox: {
-    minWidth: 200, 
-    paddingTop: 20, 
+    minWidth: 250, 
+    
+    // paddingTop: 20, 
     textAlign: 'left', 
   },
 
   actionButtons: {
     marginLeft: 10, 
-    marginRight: 10, 
+    marginRight: 20, 
+    paddingTop: 30, 
   },
 
   icons: {
@@ -260,7 +260,7 @@ class Dashboard extends React.Component {
             <div className={classes.selectionInputs}>
               <form className={classes.root} autoComplete="off">
                 <FormControl className={classes.formControl}>
-                  <InputLabel style={{paddingBottom: '10'}} htmlFor="stage-simple"><h3>Select A Stage</h3></InputLabel>
+                  <InputLabel style={{paddingBottom: '10'}} htmlFor="stage-simple"><h2>Select A Stage</h2></InputLabel>
                   <Select
                     className={classes.selectBox}
                     value="60"
@@ -280,7 +280,7 @@ class Dashboard extends React.Component {
                 </FormControl>
 
                 <FormControl className={classes.formControl}>
-                  <InputLabel htmlFor="stage-simple"><h3>Select Stage Details</h3></InputLabel>
+                  <InputLabel htmlFor="stage-simple"><h2>Select Stage Details</h2></InputLabel>
                   <Select
                     className={classes.selectBox}
                     value="10"
@@ -295,7 +295,7 @@ class Dashboard extends React.Component {
                 </FormControl>
 
                 <FormControl className={classes.formControl}>
-                  <InputLabel className={classes.inputLabel} htmlFor="stage-simple"><h3>Select A Game</h3></InputLabel>
+                  <InputLabel className={classes.inputLabel} htmlFor="stage-simple"><h2>Select A Game</h2></InputLabel>
                   <Select
                     className={classes.selectBox}
                     value="10"

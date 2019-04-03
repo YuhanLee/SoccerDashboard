@@ -9,6 +9,7 @@ import subIcon from '../../src/icons/soccer_icons/png/027-substitute-player.png'
 const styles = theme => ({
   root: {
     margin: 10, 
+    padding: 0, 
   },
 });
 

@@ -5,15 +5,20 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 import { Route, withRouter } from 'react-router-dom'; 
+import backImage from '../../src/images/cheering.jpg';
+
 
 const styles = theme => ({
   root: {
     width: "60%",
     textAlign: 'left', 
     padding: '30px', 
+    borderRadius: '10px',
   },
   background: {
-    backgroundColor: '#282c34', 
+    linearGradient: 'rgba(0, 0, 0, 0)',
+    backgroundImage: 'url('+ backImage +')',
+    backgroundSize: 'cover',
     height: '100vh',
     width: '100%', 
     minHeight: '100vh',

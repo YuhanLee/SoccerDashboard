@@ -11,6 +11,8 @@ import Paper from "@material-ui/core/Paper";
 import Avatar from '@material-ui/core/Avatar';
 import franceFlag from '../../src/icons/country_icons/france.png'; 
 import croatiaFlag from '../../src/icons/country_icons/croatia.png'; 
+import Modal from '@material-ui/core/Modal';
+import helpModal from '../../src/images/modal_help.png'; 
 
 const CustomTableCell = withStyles(theme => ({
   head: {
@@ -62,11 +64,26 @@ function createData(franceName, croatiaName) {
   return { id, franceName, croatiaName };
 }
 class SubstitutionContainer extends React.Component {
+  state = {
+    modalOpen: false, 
+  }; 
+  showModal = () => {
+    this.setState({modalOpen: true})
+  }
   render() {
     const { classes } = this.props;
 
     return (
-      <Paper className={classes.root}>
+      <div>
+
+        <Modal
+          aria-labelledby="simple-modal-title"
+          aria-describedby="simple-modal-description"
+          open={this.state.modalOpen}
+          onClose={this.handleClose}>
+        </Modal>
+
+        <Paper className={classes.root}>
         <Table className={classes.table}>
           <TableHead>
             <TableRow>
@@ -88,14 +105,16 @@ class SubstitutionContainer extends React.Component {
             sub.map(row => (
             <TableBody>
               <TableRow key={row.id} className={classes.row} >
-                <CustomTableCell align="center"><h3>{row.franceName}</h3></CustomTableCell>
-                <CustomTableCell align="center"><h3>{row.croatiaName}</h3></CustomTableCell>
+                <CustomTableCell align="center"><h2 onClick={this.showModal}>{row.franceName}</h2></CustomTableCell>
+                <CustomTableCell align="center"><h2>{row.croatiaName}</h2></CustomTableCell>
               </TableRow>
             </TableBody>            
             ))
           }
         </Table>
       </Paper>
+      </div>
+      
     );
   }
 }
