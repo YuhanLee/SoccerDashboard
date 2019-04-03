@@ -18,8 +18,7 @@ import GameStatsContainer from "./GameStatsContainer";
 import ReactLoading from 'react-loading';
 import Button from '@material-ui/core/Button';
 import Modal from '@material-ui/core/Modal';
-import Paper from "@material-ui/core/Paper";
-import helpModal from '../../src/images/modal_help.png'; 
+import helpModal from '../../src/images/help_modal.jpg'; 
 
 library.add(faPencilAlt, faQuestionCircle, faSync, faSave)
 

@@ -3,7 +3,6 @@ import { withStyles } from '@material-ui/core/styles';
 import Paper from "@material-ui/core/Paper";
 import Select from 'react-select';
 import Button from '@material-ui/core/Button';
-import color from "@material-ui/core/colors/purple";
 import { Route, withRouter } from 'react-router-dom'; 
 import backImage from '../../src/images/cheering.jpg';
 

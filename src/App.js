@@ -7,8 +7,6 @@ import 'react-resizable/css/styles.css'
 import Dashboard from './components/Dashboard';
 import LandingPage from './components/LandingPage'; 
 import SelectGames from './components/SelectGames'; 
-import SearchGames from './components/SearchGames'; 
-
 
 class App extends Component {
   render() {

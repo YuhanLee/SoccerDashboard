@@ -12,7 +12,7 @@ import Avatar from '@material-ui/core/Avatar';
 import franceFlag from '../../src/icons/country_icons/france.png'; 
 import croatiaFlag from '../../src/icons/country_icons/croatia.png'; 
 import Modal from '@material-ui/core/Modal';
-import helpModal from '../../src/images/modal_help.png'; 
+// import helpModal from '../../src/images/modal_help.png'; 
 
 const CustomTableCell = withStyles(theme => ({
   head: {
