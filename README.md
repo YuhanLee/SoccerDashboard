@@ -1,8 +1,17 @@
-# Soccer Dashboard
+# Soccer Game Dashboard
 
-## To Start
-In the projct directory, run `npm install`
+A React web app for soccer enthusiastics to track their favorite games and customize the dashboard to fit their liking. 
+This project was made for user interface and design course
 
-## `Starting Client`
+## Setup
+1. run `npm install`
+2. run ``npm start`
 
-To start the project, in the project/client directory, run `npm start`, the dashboard will be started on localhost:3000
+Some images of the application: 
+
+![landing_page](landing_page.png)
+![select_game_page](select_game_page.png)
+![dashboard](dashboard.png)
+![dashboard_resize](dashboard_resize.png)
+![dashboard_move](dashboard_move.png)
+![dashboard_help](dashboard_help.png)
