@@ -14,4 +14,4 @@ Some images of the application:
 ![dashboard](dashboard.png)
 ![dashboard_resize](dashboard_resize.png)
 ![dashboard_move](dashboard_move.png)
-![dashboard_help](dashboard_help.png)
+![dashboard_help](dashboard_help.jpg)
