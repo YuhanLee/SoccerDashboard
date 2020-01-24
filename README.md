@@ -5,7 +5,7 @@ This project was made for user interface and design course
 
 ## Setup
 1. run `npm install`
-2. run ``npm start`
+2. run `npm start`
 
 Some images of the application: 
 
